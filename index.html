@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema IA Apuestas 2026 — V9 PRO</title>
+<title>Sistema IA Apuestas 2026 — V10 PRO</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -16,28 +16,25 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh;}
 
-/* TOPBAR */
 .topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 18px;height:48px;display:flex;align-items:center;justify-content:space-between;}
 .logo{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);letter-spacing:.08em;}
 .vpill{background:var(--gdim);color:var(--green);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:20px;border:1px solid var(--green);margin-left:8px;}
 .sdot-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted2);}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:pulse 2s infinite;}
 .dot.on{background:var(--green);}
+.dot.err{background:var(--red);}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .clock{font-family:var(--mono);font-size:11px;color:var(--muted);}
 .nextt{font-family:var(--mono);font-size:10px;color:var(--muted);padding:3px 8px;background:var(--bg3);border-radius:4px;border:1px solid var(--border);}
 
-/* TABS */
 .tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);}
 .tab{padding:10px 20px;font-family:var(--mono);font-size:11px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;letter-spacing:.06em;transition:all .15s;}
 .tab:hover{color:var(--text);}
 .tab.active{color:var(--green);border-bottom-color:var(--green);}
 
-/* LAYOUT */
 .page{display:none;padding:14px 18px;flex-direction:column;gap:14px;}
 .page.active{display:flex;}
 
-/* MÉTRICAS */
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;}
 .mcard{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
 .mlabel{font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
@@ -45,7 +42,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .mval.g{color:var(--green)}.mval.y{color:var(--yellow)}.mval.r{color:var(--red)}.mval.b{color:var(--blue)}
 .msub{font-size:10px;color:var(--muted);margin-top:3px;}
 
-/* TABLA */
 .tbl-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 table{width:100%;border-collapse:collapse;}
 thead tr{background:var(--bg3);}
@@ -54,7 +50,6 @@ td{padding:9px 10px;font-size:12px;border-bottom:1px solid var(--border);vertica
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(255,255,255,.012);}
 
-/* BADGES */
 .badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.05em;}
 .blive{background:var(--rdim);color:var(--red);border:1px solid var(--red);}
 .bhoy{background:var(--ydim);color:var(--yellow);border:1px solid var(--yellow);}
@@ -63,15 +58,12 @@ tr:hover td{background:rgba(255,255,255,.012);}
 .bno{background:var(--rdim);color:var(--red);border:1px solid var(--red);}
 .bwait{background:var(--ydim);color:var(--yellow);border:1px solid var(--yellow);}
 
-/* FIABILIDAD */
 .fbar{display:flex;align-items:center;gap:5px;}
 .fbg{flex:1;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;min-width:50px;}
 .ffill{height:100%;border-radius:2px;}
 .fnum{font-family:var(--mono);font-size:10px;width:32px;text-align:right;}
-
 .cpill{background:var(--bg3);border:1px solid var(--border2);font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 6px;border-radius:3px;color:var(--yellow);}
 
-/* BOTONES */
 .btn-g{background:var(--green);color:#000;border:none;font-family:var(--mono);font-size:10px;font-weight:700;padding:6px 12px;border-radius:5px;cursor:pointer;transition:opacity .2s;letter-spacing:.05em;}
 .btn-g:hover{opacity:.85;}
 .btn-g:disabled{opacity:.35;cursor:not-allowed;}
@@ -79,30 +71,21 @@ tr:hover td{background:rgba(255,255,255,.012);}
 .btn-d:hover{border-color:var(--blue);color:var(--blue);}
 .btn-r{background:transparent;border:1px solid var(--border2);color:var(--muted2);font-size:10px;padding:4px 8px;border-radius:4px;cursor:pointer;transition:all .15s;font-family:var(--mono);}
 .btn-r:hover{border-color:var(--red);color:var(--red);}
-.btn-y{background:transparent;border:1px solid var(--border2);color:var(--muted2);font-size:10px;padding:4px 8px;border-radius:4px;cursor:pointer;transition:all .15s;font-family:var(--mono);}
-.btn-y:hover{border-color:var(--yellow);color:var(--yellow);}
 
-/* CONFIANZA DIAL */
 .conf-ring{position:relative;width:64px;height:64px;flex-shrink:0;}
 .conf-ring svg{transform:rotate(-90deg);}
 .conf-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;}
 
-/* PANEL ANÁLISIS IA */
 .ia-panel{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:8px;}
 .ia-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .ia-badge-api{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;background:var(--bdim);color:var(--blue);border:1px solid var(--blue);}
 .ia-badge-ai{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;background:var(--gdim);color:var(--green);border:1px solid var(--green);}
-.ia-vs{font-family:var(--mono);font-size:10px;color:var(--muted);}
 
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
 .compare-box{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px;}
 .compare-title{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px;}
 .compare-pred{font-size:13px;font-weight:500;margin-bottom:4px;}
-.compare-conf{font-family:var(--mono);font-size:11px;}
 
-.ia-text{font-size:12px;line-height:1.6;color:var(--text);white-space:pre-wrap;}
-
-/* CHAT IN MODAL */
 .chat-box{height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;margin-bottom:8px;padding-right:2px;}
 .chat-box::-webkit-scrollbar{width:2px;}
 .chat-box::-webkit-scrollbar-thumb{background:var(--border2);}
@@ -119,7 +102,6 @@ tr:hover td{background:rgba(255,255,255,.012);}
 .csnd{background:var(--green);border:none;color:#000;font-family:var(--mono);font-size:10px;font-weight:700;padding:6px 10px;border-radius:5px;cursor:pointer;}
 .csnd:disabled{opacity:.4;cursor:not-allowed;}
 
-/* SIMULADOR */
 .sim-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;}
 .sim-title{font-family:var(--mono);font-size:10px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
 .sel-picks{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
@@ -133,18 +115,15 @@ tr:hover td{background:rgba(255,255,255,.012);}
 .sinput{background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:12px;padding:6px 9px;border-radius:5px;outline:none;width:100%;}
 .sinput:focus{border-color:var(--green);}
 
-/* RESULTADO SIM */
 .sim-result{padding:12px;border-radius:7px;margin-top:8px;}
 .sim-result.win{background:var(--gdim);border:1px solid var(--green);}
 .sim-result.lose{background:var(--rdim);border:1px solid var(--red);}
 
-/* HISTORIAL */
 .hist-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .hstat{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:10px;text-align:center;}
 .hstat-val{font-family:var(--mono);font-size:18px;font-weight:700;line-height:1;}
 .hstat-lbl{font-size:10px;color:var(--muted);margin-top:3px;font-family:var(--mono);}
 
-/* EFECTIVIDAD COMPARATIVA */
 .eff-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .eff-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;}
 .eff-title{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.07em;margin-bottom:8px;}
@@ -153,26 +132,31 @@ tr:hover td{background:rgba(255,255,255,.012);}
 .eff-bar-bg{height:6px;background:var(--bg3);border-radius:3px;margin-top:8px;overflow:hidden;}
 .eff-bar-fill{height:100%;border-radius:3px;transition:width .5s;}
 
-/* MID MONITOR */
-.mid-panel{background:var(--bg2);border:2px solid var(--yellow);border-radius:10px;padding:14px;}
+.mid-panel{background:var(--bg2);border:2px solid var(--yellow);border-radius:10px;padding:14px;margin-bottom:10px;}
 .mid-title{font-family:var(--mono);font-size:11px;color:var(--yellow);letter-spacing:.07em;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.mid-partido{font-size:15px;font-weight:500;margin-bottom:4px;}
-.mid-pred{font-size:12px;color:var(--muted2);margin-bottom:10px;}
-.mid-chat{height:160px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
 .decision-box{border-radius:7px;padding:10px 14px;font-family:var(--mono);font-size:13px;font-weight:700;text-align:center;margin-top:6px;}
 .decision-box.sigue{background:var(--gdim);color:var(--green);border:1px solid var(--green);}
 .decision-box.retira{background:var(--rdim);color:var(--red);border:1px solid var(--red);}
 .decision-box.espera{background:var(--ydim);color:var(--yellow);border:1px solid var(--yellow);}
 
-/* MODAL OVERLAY */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:flex-start;justify-content:center;padding-top:40px;overflow-y:auto;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;align-items:flex-start;justify-content:center;padding-top:40px;overflow-y:auto;}
 .overlay.open{display:flex;}
 .modal{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:18px;width:640px;max-width:96vw;}
 .modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .modal-ttl{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.08em;}
 .modal-close{background:transparent;border:1px solid var(--border2);color:var(--muted2);font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;font-family:var(--mono);}
 
-/* LOG */
+/* BANNER ERROR */
+.err-banner{background:var(--rdim);border:1px solid var(--red);border-radius:8px;padding:12px 14px;font-family:var(--mono);font-size:11px;color:var(--red);display:none;}
+.err-banner.show{display:block;}
+
+/* API STATUS BAR */
+.api-status{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.api-pill{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:10px;border:1px solid var(--border);}
+.api-pill.ok{background:var(--gdim);color:var(--green);border-color:var(--green);}
+.api-pill.err{background:var(--rdim);color:var(--red);border-color:var(--red);}
+.api-pill.wait{background:var(--ydim);color:var(--yellow);border-color:var(--yellow);}
+
 .log-strip{background:var(--bg3);border-top:1px solid var(--border);padding:4px 18px;font-family:var(--mono);font-size:9px;color:var(--muted);display:flex;gap:14px;overflow-x:auto;white-space:nowrap;flex-shrink:0;}
 .lent{color:var(--muted2);}.lent span{color:var(--green);}
 
@@ -182,7 +166,6 @@ tr:hover td{background:rgba(255,255,255,.012);}
 @keyframes ld{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
 
 select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);font-size:10px;padding:3px 7px;border-radius:4px;outline:none;font-family:var(--mono);}
-
 .sechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .sectit{font-family:var(--mono);font-size:10px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;}
 
@@ -191,20 +174,19 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:10px;">
     <span class="logo">⚽ APUESTAS IA</span>
-    <span class="vpill">V9 PRO</span>
+    <span class="vpill">V10 PRO</span>
     <div class="sdot-row"><div class="dot" id="sDot"></div><span id="sTxt">iniciando...</span></div>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
+    <span id="apiStatusBar" style="font-family:var(--mono);font-size:9px;color:var(--muted);">APIs: --</span>
     <span class="nextt" id="nextT">próx: --:--</span>
     <span class="clock" id="clk">--:--:--</span>
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="showTab('picks',this)">📋 PICKS</div>
   <div class="tab" onclick="showTab('sim',this)">💰 SIMULADOR</div>
@@ -212,16 +194,16 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
   <div class="tab" onclick="showTab('mid',this)">🚨 MID-PARTIDO</div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- TAB 1: PICKS                                    -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 1: PICKS -->
 <div class="page active" id="page-picks">
+
+  <div id="errBanner" class="err-banner"></div>
 
   <div class="metrics">
     <div class="mcard"><div class="mlabel">picks activos</div><div class="mval g" id="mPicks">0</div><div class="msub" id="mSub">esperando...</div></div>
     <div class="mcard"><div class="mlabel">en vivo</div><div class="mval r" id="mVivo">0</div><div class="msub">partidos ahora</div></div>
     <div class="mcard"><div class="mlabel">próx. 6h</div><div class="mval b" id="mProx">0</div><div class="msub">pendientes</div></div>
-    <div class="mcard"><div class="mlabel">créditos</div><div class="mval y" id="mCred">--</div><div class="msub">restantes</div></div>
+    <div class="mcard"><div class="mlabel">req. restantes</div><div class="mval y" id="mCred">--</div><div class="msub" id="mCredKey">API-Football</div></div>
     <div class="mcard"><div class="mlabel">IA acuerda</div><div class="mval g" id="mIaAcuerda">--%</div><div class="msub">vs API</div></div>
   </div>
 
@@ -245,7 +227,7 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
           <option value="hoy">Hoy</option>
           <option value="proximo">Próximos</option>
         </select>
-        <button class="btn-g" onclick="ejecutar()">▶ EJECUTAR</button>
+        <button class="btn-g" id="btnEjecutar" onclick="ejecutar()">▶ EJECUTAR</button>
         <span style="font-family:var(--mono);font-size:9px;color:var(--muted)">act:<span id="ulAct">--</span></span>
       </div>
     </div>
@@ -261,21 +243,17 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
         </thead>
         <tbody id="pBody">
           <tr><td colspan="9" style="text-align:center;color:var(--muted);padding:28px;font-family:var(--mono);font-size:10px;">
-            Esperando ejecución automática (11:40 / 17:00 ECU) — o presiona ▶ EJECUTAR</td></tr>
+            Presiona ▶ EJECUTAR para cargar picks del día</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- TAB 2: SIMULADOR                                -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 2: SIMULADOR -->
 <div class="page" id="page-sim">
-
   <div class="sim-card">
     <div class="sim-title">💰 SIMULADOR — escoge 1 pick o 2 combinados</div>
-
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
       <div style="font-size:12px;color:var(--muted2);">Modo:</div>
       <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
@@ -285,17 +263,10 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
         <input type="radio" name="simMode" value="combo" onchange="setSimMode(this)"> Combinada (2 picks)
       </label>
     </div>
-
-    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;" id="simInstr">
-      Haz clic en un pick de la lista para seleccionarlo:
-    </div>
-
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;" id="simInstr">Haz clic en un pick para seleccionarlo:</div>
     <div class="sel-picks" id="selPicks">
-      <div style="color:var(--muted);font-size:11px;font-family:var(--mono);padding:10px;text-align:center;">
-        Primero ve a la pestaña PICKS y ejecuta el sistema
-      </div>
+      <div style="color:var(--muted);font-size:11px;font-family:var(--mono);padding:10px;text-align:center;">Primero ejecuta el sistema en la pestaña PICKS</div>
     </div>
-
     <div class="sim-inputs">
       <div class="sinput-grp">
         <div class="sinput-lbl">APUESTA ($)</div>
@@ -310,98 +281,77 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
         <input class="sinput" id="simGanPot" readonly style="color:var(--green);"/>
       </div>
     </div>
-
     <div style="display:flex;gap:8px;">
       <button class="btn-g" style="flex:1;" onclick="registrarSim(true)">✅ REGISTRAR ACIERTO</button>
       <button class="btn-r" style="flex:1;padding:6px;" onclick="registrarSim(false)">❌ REGISTRAR FALLO</button>
     </div>
-
     <div id="simResultBox"></div>
   </div>
-
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- TAB 3: HISTORIAL                                -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 3: HISTORIAL -->
 <div class="page" id="page-hist">
-
   <div class="eff-grid">
     <div class="eff-box">
-      <div class="eff-title">📡 EFECTIVIDAD API (sugerencias crudas)</div>
+      <div class="eff-title">📡 EFECTIVIDAD API (sugerencias)</div>
       <div class="eff-val" id="effApi">--%</div>
       <div class="eff-sub" id="effApiSub">sin datos</div>
       <div class="eff-bar-bg"><div class="eff-bar-fill" id="effApiBar" style="width:0%;background:var(--blue);"></div></div>
     </div>
     <div class="eff-box">
-      <div class="eff-title">🤖 EFECTIVIDAD IA (validación GPT)</div>
+      <div class="eff-title">🤖 EFECTIVIDAD IA (validación Groq)</div>
       <div class="eff-val" id="effIa">--%</div>
       <div class="eff-sub" id="effIaSub">sin datos</div>
       <div class="eff-bar-bg"><div class="eff-bar-fill" id="effIaBar" style="width:0%;background:var(--green);"></div></div>
     </div>
   </div>
-
   <div class="hist-summary">
     <div class="hstat"><div class="hstat-val g" id="hAciertos" style="color:var(--green)">0</div><div class="hstat-lbl">aciertos</div></div>
     <div class="hstat"><div class="hstat-val r" id="hFallos" style="color:var(--red)">0</div><div class="hstat-lbl">fallos</div></div>
     <div class="hstat"><div class="hstat-val" id="hTotal">0</div><div class="hstat-lbl">total apostado</div></div>
     <div class="hstat"><div class="hstat-val" id="hGan" style="color:var(--green)">$0.00</div><div class="hstat-lbl">ganancia neta</div></div>
   </div>
-
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
     <span class="sectit">historial completo</span>
     <button class="btn-d" onclick="limpiarHistorial()">🗑 Limpiar todo</button>
   </div>
-
   <div class="tbl-wrap">
     <table>
       <thead>
         <tr>
           <th>fecha</th><th>partido</th><th>predicción</th><th>tipo</th>
-          <th>cuota</th><th>apuesta</th><th>resultado</th><th>ganancia</th>
-          <th>fuente</th>
+          <th>cuota</th><th>apuesta</th><th>resultado</th><th>ganancia</th><th>fuente</th>
         </tr>
       </thead>
       <tbody id="histBody">
-        <tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">
-          Sin historial aún — registra apuestas en el Simulador
-        </td></tr>
+        <tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">Sin historial aún</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- TAB 4: MID-PARTIDO                              -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 4: MID-PARTIDO -->
 <div class="page" id="page-mid">
-
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
     <div class="mcard"><div class="mlabel">partidos monitoreados</div><div class="mval y" id="midTotal">0</div></div>
     <div class="mcard"><div class="mlabel">alertas emitidas</div><div class="mval r" id="midAlertas">0</div></div>
   </div>
-
   <div class="sechead">
-    <span class="sectit">🚨 monitoreo en tiempo real — picks apostados</span>
+    <span class="sectit">🚨 monitoreo en tiempo real</span>
     <button class="btn-g" onclick="chequearMid()">⚡ REVISAR AHORA</button>
   </div>
-
   <div id="midPanel">
     <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:11px;">
       El sistema revisa automáticamente cada 30 min.<br>
       Presiona ⚡ REVISAR AHORA para chequear partidos entre min 35-65.
     </div>
   </div>
-
-  <!-- Chat mid general -->
-  <div class="mid-panel">
-    <div class="mid-title">
-      <span>💬</span> PREGUNTA SOBRE CUALQUIER PARTIDO EN VIVO
-    </div>
+  <div class="mid-panel" style="margin-top:14px;">
+    <div class="mid-title"><span>💬</span> PREGUNTA SOBRE CUALQUIER PARTIDO EN VIVO</div>
     <div class="mid-chat chat-box" id="midChatBox">
       <div class="msg">
         <div class="mav">IA</div>
-        <div class="mbub">Dime el partido y el marcador actual. Te digo si seguir o retirarte, y si hay chances de remontada.</div>
+        <div class="mbub">Dime el partido y el marcador actual. Te digo si seguir o retirarte.</div>
       </div>
     </div>
     <div class="cin-row">
@@ -411,30 +361,25 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- MODAL ANÁLISIS COMPLETO                         -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- MODAL ANÁLISIS COMPLETO -->
 <div class="overlay" id="modalPick">
   <div class="modal">
     <div class="modal-hdr">
       <span class="modal-ttl">🔍 ANÁLISIS COMPLETO DEL PICK</span>
       <button class="modal-close" onclick="cerrarModal()">✕ CERRAR</button>
     </div>
-
     <div style="font-size:15px;font-weight:500;margin-bottom:2px;" id="mPartido">--</div>
     <div style="font-size:11px;color:var(--muted2);margin-bottom:12px;" id="mInfo">--</div>
-
-    <!-- Comparación API vs IA -->
     <div class="ia-panel">
       <div class="ia-header">
-        <span class="ia-badge-api">📡 API sugiere</span>
-        <span class="ia-vs">vs</span>
-        <span class="ia-badge-ai">🤖 IA valida</span>
+        <span class="ia-badge-api">📡 API-Football</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">vs</span>
+        <span class="ia-badge-ai">🤖 Groq IA</span>
         <span style="margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--muted)" id="mConfianzaLabel"></span>
       </div>
       <div class="compare-grid">
         <div class="compare-box">
-          <div class="compare-title">📡 sugerencia API</div>
+          <div class="compare-title">📡 sugerencia API-Football</div>
           <div class="compare-pred" id="mApiPred">--</div>
           <div style="display:flex;align-items:center;gap:8px;">
             <div class="conf-ring" id="apiRing">
@@ -449,7 +394,7 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
           </div>
         </div>
         <div class="compare-box">
-          <div class="compare-title">🤖 validación IA</div>
+          <div class="compare-title">🤖 validación Groq IA</div>
           <div class="compare-pred" id="mIaPred">analizando...</div>
           <div style="display:flex;align-items:center;gap:8px;">
             <div class="conf-ring">
@@ -464,24 +409,17 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
           </div>
         </div>
       </div>
-
-      <!-- Veredictto final -->
       <div id="veredictBox" style="display:none;padding:10px 14px;border-radius:7px;margin-bottom:10px;font-family:var(--mono);font-size:12px;"></div>
-
-      <!-- Análisis completo texto -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px;max-height:160px;overflow-y:auto;margin-bottom:10px;">
-        <div id="iaFullText" style="color:var(--muted2);font-size:11px;">🌐 Buscando datos en internet...</div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px;max-height:200px;overflow-y:auto;margin-bottom:10px;">
+        <div id="iaFullText" style="color:var(--muted2);font-size:11px;">Iniciando análisis...</div>
       </div>
     </div>
-
-    <!-- Chat pick -->
     <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin:10px 0 6px;letter-spacing:.07em;">PREGUNTA SOBRE ESTE PICK</div>
     <div class="chat-box" id="pickChat"></div>
     <div class="cin-row" style="margin-bottom:10px;">
       <input class="cin" id="pickChatIn" placeholder="¿Hay remontada posible? ¿El marcador actual cambia algo?" onkeydown="if(event.key==='Enter')enviarPickChat()"/>
       <button class="csnd" id="pickSend" onclick="enviarPickChat()">▶</button>
     </div>
-
     <div style="display:flex;gap:8px;">
       <button class="btn-g" onclick="simularDesdeModal()">💰 Simular esta apuesta</button>
       <button class="btn-d" onclick="cerrarModal()">Cerrar</button>
@@ -489,521 +427,463 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);
   </div>
 </div>
 
-<!-- LOG STRIP -->
 <div class="log-strip" id="logStrip">
-  <span class="lent">V9 PRO — <span>📅 Free API · 💰 Odds API · 🌐 Tavily · 🤖 Groq+OpenRouter auto · 🇪🇨 LigaPro · UTC-5</span></span>
+  <span class="lent">V10 PRO — <span>📡 API-Football · 🤖 Groq Llama-3.3 · 💾 Upstash Redis · 🇪🇨 LigaPro · UTC-5</span></span>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// KEYS (integradas)
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// CONFIGURACIÓN DE CLAVES
+// ═══════════════════════════════════════════════════════════
 const KEYS = {
-  odds1:       '5f8be73a89fd1b430fc7cf0419c66bd0',
-  odds2:       '5f8be73a89fd1b430fc7cf0419c66bd0',
-  odds3:       '5f8be73a89fd1b430fc7cf0419c66bd0',
-  stats:       '0bfd73251fea491a9d78244b7896ce07',
-  openai:      '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',
-  tavily:      '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',
-  rapid:       'b6093df52cmsh2bc85774431a1a3p172622jsnc36fcb750399',
-  openrouter:  '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'
-};
-// Rotación de claves odds
-const ODDS_KEYS = ['odds1','odds2','odds3'];
-let oddsKeyIdx = 0;
-function getOddsKey() {
-  return KEYS[ODDS_KEYS[oddsKeyIdx % ODDS_KEYS.length]];
-}
-function rotarOddsKey() {
-  oddsKeyIdx++;
-  log('🔄 ODDS KEY', `Rotando a clave ${(oddsKeyIdx % ODDS_KEYS.length)+1}`);
-  return KEYS[ODDS_KEYS[oddsKeyIdx % ODDS_KEYS.length]];
-}
+  // API-Football — 3 claves, 100 req/día cada una = 300 req/día total
+  apif: [
+    'dcff6957d9f47367a348a78c912191a8',
+    'f2106551b2e785292e8c131a409817ff',
+    '0ac6e2bf32bd7ab3de8f6bc3c7bac7b8'
+  ],
+  apifIdx: 0,
 
-// IA activa: 'groq' o 'gemini'
-let iaActiva = 'groq';
-let groqFallado = false;
+  // Groq (IA principal)
+  groq: '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',
 
-
-// ═══════════════════════════════════════════════
-// TAVILY — BÚSQUEDA WEB REAL
-// ═══════════════════════════════════════════════
-async function buscarWeb(query, maxResults=3) {
-  try {
-    const r = await fetch('https://api.tavily.com/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        api_key: KEYS.tavily,
-        query,
-        max_results: maxResults,
-        search_depth: 'basic',
-        include_answer: true
-      })
-    });
-    if (!r.ok) return null;
-    const d = await r.json();
-    // Concatenar respuesta directa + snippets de resultados
-    let texto = '';
-    if (d.answer) texto += `Respuesta: ${d.answer}\n`;
-    (d.results||[]).forEach(res => {
-      texto += `• ${res.title}: ${res.content?.slice(0,200)}\n`;
-    });
-    return texto.trim() || null;
-  } catch(e) {
-    log('TAVILY ERR', e.message);
-    return null;
-  }
-}
-
-async function buscarContextoPartido(home, away, liga) {
-  const hoy = new Date().toLocaleDateString('es-ES', {day:'2-digit',month:'2-digit',year:'numeric'});
-  log('🌐 BUSCANDO', `${home} vs ${away}...`);
-
-  // Buscar en paralelo para ahorrar tiempo
-  const [alineaciones, lesiones, motivacion, forma] = await Promise.all([
-    buscarWeb(`${home} ${away} alineacion titular hoy ${hoy}`),
-    buscarWeb(`${home} lesionados bajas ${hoy}`),
-    buscarWeb(`${away} lesionados bajas ${hoy}`),
-    buscarWeb(`${home} vs ${away} forma reciente resultados`)
-  ]);
-
-  let contexto = `=== DATOS REALES BUSCADOS EN INTERNET (${hoy}) ===\n`;
-  if (alineaciones) contexto += `\n📋 ALINEACIONES:\n${alineaciones}\n`;
-  if (lesiones)     contexto += `\n🤕 BAJAS ${home.toUpperCase()}:\n${lesiones}\n`;
-  if (motivacion)   contexto += `\n🤕 BAJAS ${away.toUpperCase()}:\n${motivacion}\n`;
-  if (forma)        contexto += `\n📊 FORMA RECIENTE:\n${forma}\n`;
-  if (!alineaciones && !lesiones && !motivacion && !forma)
-    contexto += '(sin resultados de búsqueda)\n';
-
-  log('🌐 WEB OK', `Contexto listo para ${home} vs ${away}`);
-  return contexto;
-}
-
-async function buscarMarcadorVivo(home, away) {
-  const hoy = new Date().toLocaleDateString('es-ES', {day:'2-digit',month:'2-digit',year:'numeric'});
-  const resultado = await buscarWeb(`${home} vs ${away} marcador resultado en vivo hoy ${hoy}`, 3);
-  return resultado || '(marcador no disponible en internet)';
-}
-
-
-// ═══════════════════════════════════════════════
-// FREE API LIVE FOOTBALL — partidos + livescores
-// Endpoint: /football-get-matches-by-date-and-league
-// NO consume créditos de the-odds-api
-// ═══════════════════════════════════════════════
-
-// IDs reales de ligas en Free API Live Football Data
-// Fuente: documentación oficial de la API
-const LIGA_IDS_RAPID = {
-  'Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿': 47,   // English Premier League
-  'La Liga 🇪🇸':        87,   // Spanish La Liga
-  'Bundesliga 🇩🇪':     35,   // German Bundesliga
-  'Champions ⭐':       7,    // UEFA Champions League
-  'Serie A 🇮🇹':        55,   // Italian Serie A
-  'Liga AR 🇦🇷':        112   // Argentine Primera División
+  // Upstash Redis (cache)
+  redisUrl:   'https://strong-jaguar-42179.upstash.io',
+  redisToken: 'AaTDAAIgcDE5OGJiNTc2NDhmMDk0NzZmOWQzMTk2NWUxYjEyMzk4Ng'
 };
 
-async function traerPartidosHoy() {
-  const hoy = new Date();
-  const fecha = `${hoy.getFullYear()}${String(hoy.getMonth()+1).padStart(2,'0')}${String(hoy.getDate()).padStart(2,'0')}`;
-  
-  let todosPartidos = [];
-  
-  // Ligas IDs reales de la API
-  const ligasIds = [
-    { rapidId: 47,  nombre: 'Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿', oddsId: 'soccer_epl',                        tipo: 'GOLES'  },
-    { rapidId: 87,  nombre: 'La Liga 🇪🇸',         oddsId: 'soccer_spain_la_liga',              tipo: 'GOLES'  },
-    { rapidId: 35,  nombre: 'Bundesliga 🇩🇪',      oddsId: 'soccer_germany_bundesliga',         tipo: 'GOLES'  },
-    { rapidId: 7,   nombre: 'Champions ⭐',        oddsId: 'soccer_uefa_champs_league',         tipo: 'GOLES'  },
-    { rapidId: 55,  nombre: 'Serie A 🇮🇹',         oddsId: 'soccer_italy_serie_a',              tipo: 'SEGURA' },
-    { rapidId: 112, nombre: 'Liga AR 🇦🇷',         oddsId: 'soccer_argentina_primera_division', tipo: 'SEGURA' }
-  ];
-
-  for (const liga of ligasIds) {
-    try {
-      const url = `https://free-api-live-football-data.p.rapidapi.com/football-get-matches-by-date-and-league?date=${fecha}&leagueId=${liga.rapidId}`;
-      const r = await fetch(url, {
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-host': 'free-api-live-football-data.p.rapidapi.com',
-          'x-rapidapi-key': KEYS.rapid
-        }
-      });
-      if (!r.ok) { log('RAPID SKIP', `${liga.nombre} ${r.status}`); continue; }
-      const data = await r.json();
-      const matches = data?.response?.matches || data?.matches || [];
-      
-      matches.forEach(m => {
-        // Normalizar estructura del partido
-        const home = m.homeTeam?.name || m.home_team || m.homeName || '';
-        const away = m.awayTeam?.name || m.away_team || m.awayName || '';
-        const time = m.time || m.kickoff || m.matchTime || '';
-        const status = m.status || m.matchStatus || '';
-        const golesH = m.homeScore ?? m.score?.home ?? null;
-        const golesA = m.awayScore ?? m.score?.away ?? null;
-        
-        if (!home || !away) return;
-        
-        // Construir fecha del partido
-        const [hh, mm] = String(time).split(':');
-        const fechaPartido = new Date(hoy);
-        if (hh) { fechaPartido.setHours(parseInt(hh), parseInt(mm||0), 0); }
-        
-        todosPartidos.push({
-          rapidId: m.id || m.matchId,
-          home, away,
-          hora: time || '--:--',
-          fechaRaw: fechaPartido,
-          fecha: `${String(hoy.getDate()).padStart(2,'0')}/${String(hoy.getMonth()+1).padStart(2,'0')}`,
-          liga: liga.nombre,
-          ligaOddsId: liga.oddsId,
-          ligaTipo: liga.tipo,
-          statusVivo: status,
-          golesH, golesA,
-          partido: `${home} vs ${away}`
-        });
-      });
-      log('📅 '+liga.nombre, `${matches.length} partidos`);
-    } catch(e) {
-      log('RAPID ERR', `${liga.nombre}: ${e.message}`);
-    }
-  }
-  return todosPartidos;
+function getApifKey() {
+  return KEYS.apif[KEYS.apifIdx % KEYS.apif.length];
+}
+function rotarApifKey() {
+  KEYS.apifIdx++;
+  log('🔄 API-FOOTBALL', `Rotando a clave ${(KEYS.apifIdx % KEYS.apif.length) + 1}/3`);
+  return getApifKey();
 }
 
-async function traerMarcadorVivo(rapidId, home, away) {
-  try {
-    const r = await fetch(`https://free-api-live-football-data.p.rapidapi.com/football-get-livescores`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-rapidapi-host': 'free-api-live-football-data.p.rapidapi.com',
-        'x-rapidapi-key': KEYS.rapid
-      }
-    });
-    if (!r.ok) return null;
-    const data = await r.json();
-    const matches = data?.response?.matches || data?.matches || [];
-    // Buscar por id o por nombre de equipos
-    const match = matches.find(m =>
-      m.id === rapidId ||
-      (m.homeTeam?.name||'').includes(home.split(' ')[0]) ||
-      (m.homeName||'').includes(home.split(' ')[0])
-    );
-    if (!match) return null;
-    const gh = match.homeScore ?? match.score?.home ?? '?';
-    const ga = match.awayScore ?? match.score?.away ?? '?';
-    const min = match.minute || match.elapsed || '?';
-    return { home, away, golesH: gh, golesA: ga, minuto: min };
-  } catch(e) {
-    return null;
-  }
-}
-
-async function traerCuotasPartido(home, away, oddsId) {
-  // Solo llama a the-odds-api para UN partido específico — ahorra créditos
-  try {
-    const url = `https://api.the-odds-api.com/v4/sports/${oddsId}/odds?apiKey=${KEYS.odds1}&regions=eu,uk&markets=h2h,totals`;
-    const r = await fetch(url);
-    const restan = r.headers.get('x-requests-remaining');
-    if (restan) document.getElementById('mCred').textContent = restan;
-    if (!r.ok) return null;
-    const partidos = await r.json();
-    // Buscar el partido específico
-    return partidos.find(p =>
-      p.home_team.includes(home.split(' ')[0]) ||
-      p.away_team.includes(away.split(' ')[0]) ||
-      home.includes(p.home_team.split(' ')[0])
-    ) || null;
-  } catch(e) {
-    return null;
-  }
-}
-
-// ═══════════════════════════════════════════════
-// CONFIG (mismo que V7)
-// ═══════════════════════════════════════════════
-const CFG = {
-  cuotaMin: 1.40, cuotaMax: 4.50,
-  fiabMin: 58,    apuesta: 2,
-  cambioCuota: 0.10
-};
-
+// ═══════════════════════════════════════════════════════════
+// LIGAS — IDs de API-Football (temporada 2025)
+// ═══════════════════════════════════════════════════════════
 const LIGAS = [
-  { id:'soccer_epl',                        fdId:'PL',  nombre:'Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿', tipo:'GOLES'  },
-  { id:'soccer_spain_la_liga',              fdId:'PD',  nombre:'La Liga 🇪🇸',        tipo:'GOLES'  },
-  { id:'soccer_germany_bundesliga',         fdId:'BL1', nombre:'Bundesliga 🇩🇪',     tipo:'GOLES'  },
-  { id:'soccer_uefa_champs_league',         fdId:'CL',  nombre:'Champions ⭐',       tipo:'GOLES'  },
-  { id:'soccer_italy_serie_a',              fdId:'SA',  nombre:'Serie A 🇮🇹',        tipo:'SEGURA' },
-  { id:'soccer_argentina_primera_division', fdId:'ASL', nombre:'Liga AR 🇦🇷',        tipo:'SEGURA' },
-  { id:'soccer_ecuador_primera_a',          fdId:'ECU', nombre:'LigaPro 🇪🇨',        tipo:'SEGURA', cuotaMin: 1.25 }
+  { id: 39,  nombre: 'Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿', season: 2024, tipo: 'GOLES',  cuotaMin: 1.40 },
+  { id: 140, nombre: 'La Liga 🇪🇸',         season: 2024, tipo: 'GOLES',  cuotaMin: 1.40 },
+  { id: 78,  nombre: 'Bundesliga 🇩🇪',      season: 2024, tipo: 'GOLES',  cuotaMin: 1.40 },
+  { id: 2,   nombre: 'Champions ⭐',        season: 2024, tipo: 'GOLES',  cuotaMin: 1.35 },
+  { id: 135, nombre: 'Serie A 🇮🇹',         season: 2024, tipo: 'SEGURA', cuotaMin: 1.40 },
+  { id: 128, nombre: 'Liga AR 🇦🇷',         season: 2024, tipo: 'SEGURA', cuotaMin: 1.35 },
+  { id: 303, nombre: 'LigaPro 🇪🇨',         season: 2025, tipo: 'SEGURA', cuotaMin: 1.25 }
 ];
 
-// ═══════════════════════════════════════════════
+const CFG = { cuotaMax: 4.50, fiabMin: 58, apuesta: 2 };
+
+// ═══════════════════════════════════════════════════════════
 // ESTADO GLOBAL
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 let picks = [], historial = [], midAlertas = [];
 let pickChatHist = [], midChatHist = [];
 let activePick = null;
 let simMode = 'simple', simSel1 = null, simSel2 = null;
 let iaAcuerdaCount = 0, iaDesacuerdaCount = 0;
-let oddsKeyActual = KEYS.odds1;
 
-// ═══════════════════════════════════════════════
-// PERSISTENCIA localStorage — picks + historial
-// ═══════════════════════════════════════════════
-function cargarHist() {
-  try { historial = JSON.parse(localStorage.getItem('apuestas_hist_v8') || '[]'); } catch(e){ historial=[]; }
-  renderHist(); calcEfectividad();
-}
-
-function guardarHist() {
-  localStorage.setItem('apuestas_hist_v8', JSON.stringify(historial));
-}
-
-function guardarPicksCache() {
+// ═══════════════════════════════════════════════════════════
+// UPSTASH REDIS — cache en la nube
+// ═══════════════════════════════════════════════════════════
+async function redisSet(key, value, exSeconds = 1800) {
   try {
-    const cache = {
-      picks: picks.map(p => ({...p, fechaRaw: p.fechaRaw.toISOString()})),
-      timestamp: Date.now()
-    };
-    localStorage.setItem('apuestas_picks_cache', JSON.stringify(cache));
-  } catch(e) {}
-}
-
-function cargarPicksCache() {
-  try {
-    const cache = JSON.parse(localStorage.getItem('apuestas_picks_cache') || 'null');
-    if (!cache) return false;
-    // Cache válido por 30 minutos
-    const edad = (Date.now() - cache.timestamp) / 60000;
-    if (edad > 30) { log('CACHE', 'Expirado — re-ejecutando...'); return false; }
-    picks = cache.picks.map(p => ({...p, fechaRaw: new Date(p.fechaRaw)}));
-    // Actualizar estados (pueden haber cambiado)
-    picks.forEach(p => { p.estado = estPartido(p.fechaRaw); });
-    picks = picks.filter(p => p.estado !== 'finalizado');
-    render(); actualizarMetricas(); contadores();
-    const min = Math.round(edad);
-    log('CACHE', `${picks.length} picks cargados (hace ${min} min)`);
-    document.getElementById('sDot').className = 'dot on';
-    document.getElementById('sTxt').textContent = `online (cache ${min}m)`;
-    document.getElementById('ulAct').textContent =
-      new Date(cache.timestamp).toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit',hour12:false});
+    const r = await fetch(`${KEYS.redisUrl}/set/${key}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${KEYS.redisToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(value)
+    });
+    if (!r.ok) throw new Error('Redis set failed: ' + r.status);
+    // Setear expiración
+    await fetch(`${KEYS.redisUrl}/expire/${key}/${exSeconds}`, {
+      headers: { 'Authorization': `Bearer ${KEYS.redisToken}` }
+    });
     return true;
-  } catch(e) { return false; }
+  } catch(e) {
+    log('REDIS ERR', e.message);
+    return false;
+  }
 }
 
-// ═══════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════
-function showTab(id, el) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  el.classList.add('active');
-  if (id==='sim') renderSimPicks();
-  if (id==='hist') { renderHist(); calcEfectividad(); }
+async function redisGet(key) {
+  try {
+    const r = await fetch(`${KEYS.redisUrl}/get/${key}`, {
+      headers: { 'Authorization': `Bearer ${KEYS.redisToken}` }
+    });
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.result;
+  } catch(e) {
+    return null;
+  }
 }
 
-// ═══════════════════════════════════════════════
-// RELOJ + TIMER
-// ═══════════════════════════════════════════════
-function tickClock() {
-  const now = new Date();
-  document.getElementById('clk').textContent =
-    now.toLocaleTimeString('es-EC',{hour12:false});
-  // Ecuador = UTC-5
-  const ecu = new Date(now.getTime() - 5*3600000);
-  const h=ecu.getUTCHours(), m=ecu.getUTCMinutes();
-  const minAct = h*60+m;
-  const targets=[11*60+40, 17*60];
-  let next = targets.find(t=>t>minAct) ?? targets[0]+1440;
-  const diff = next > minAct ? next-minAct : next+1440-minAct;
-  document.getElementById('nextT').textContent =
-    `próx: ${String(Math.floor(diff/60)).padStart(2,'0')}h${String(diff%60).padStart(2,'0')}m`;
-  if((h===11&&m===40)||(h===17&&m===0)) ejecutar();
-  if(m===0||m===30) chequearMid();
-}
-setInterval(tickClock,60000); tickClock();
+// ═══════════════════════════════════════════════════════════
+// API-FOOTBALL — fetch con rotación de claves
+// ═══════════════════════════════════════════════════════════
+async function apifetch(endpoint, params = {}) {
+  const url = new URL('https://v3.football.api-sports.io' + endpoint);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
 
-// ═══════════════════════════════════════════════
-// LOG
-// ═══════════════════════════════════════════════
-function log(tipo,msg) {
-  const s=document.getElementById('logStrip');
-  const e=document.createElement('span'); e.className='lent';
-  const t=new Date().toLocaleTimeString('es-EC',{hour12:false});
-  e.innerHTML=`[${t}] <span>${tipo}</span> — ${msg}`;
-  s.appendChild(e); s.scrollLeft=s.scrollWidth;
-}
+  let resp = await fetch(url.toString(), {
+    headers: {
+      'x-apisports-key': getApifKey(),
+      'x-rapidapi-key': getApifKey(),
+      'x-rapidapi-host': 'v3.football.api-sports.io'
+    }
+  });
 
-// ═══════════════════════════════════════════════
-// TRADUCIR PREDICCIÓN A ESPAÑOL CLARO
-// ═══════════════════════════════════════════════
-function traducirPred(pred, home, away) {
-  if (!pred) return pred;
-  if (pred.includes('OVER 2.5'))
-    return `🔥 MÁS DE 2.5 GOLES (3 o más en total)`;
-  if (pred.includes('UNDER 3.5'))
-    return `🛡️ MENOS DE 3.5 GOLES (3 o menos en total)`;
-  if (pred.includes('UNDER 2.5'))
-    return `🛡️ MENOS DE 2.5 GOLES (2 o menos en total)`;
-  // Ganador
-  const nombre = pred.replace('⚽ ','').replace('🔥 ','').trim();
-  if (nombre === home)   return `⚽ GANA ${home} (local)`;
-  if (nombre === away)   return `⚽ GANA ${away} (visitante)`;
-  if (nombre === 'Draw' || nombre === 'Empate') return `🤝 EMPATE`;
-  return pred;
-}
-
-function etiquetaCuota(pred) {
-  if (pred.includes('MÁS DE') || pred.includes('OVER'))   return '+ goles';
-  if (pred.includes('MENOS DE') || pred.includes('UNDER')) return '- goles';
-  if (pred.includes('GANA')) return 'ganador';
-  if (pred.includes('EMPATE')) return 'empate';
-  return '';
-}
-
-// ═══════════════════════════════════════════════
-// ESTADO PARTIDO
-// ═══════════════════════════════════════════════
-function estPartido(iso) {
-  const dif=(new Date(iso)-new Date())/60000;
-  if(dif<=0&&dif>=-120) return 'vivo';
-  if(dif>0&&dif<=720)   return 'hoy';
-  if(dif>720&&dif<=4320) return 'proximo';  // hasta 72h = lunes/martes
-  return 'finalizado';
-}
-
-// ═══════════════════════════════════════════════
-// CALCULAR PICK — MISMA LÓGICA V7
-// Solo mercados h2h y totals (ahorra créditos)
-// Cuota min 1.55 max 4.00
-// ═══════════════════════════════════════════════
-function calcPick(p, liga) {
-  if (!p.bookmakers?.length) return null;
-  let fav='', cuota=99, over25=0, under35=0;
-  let cuotasH2H=[];
-  const cuotaMinLiga = liga.cuotaMin || CFG.cuotaMin;
-
-  p.bookmakers.forEach(b=>{
-    (b.markets||[]).forEach(m=>{
-      if(m.key==='h2h'){
-        if(!cuotasH2H.length) cuotasH2H=m.outcomes.map(o=>({name:o.name,price:o.price}));
-        m.outcomes.forEach(o=>{ if(o.price<cuota){cuota=o.price;fav=o.name;} });
+  // 429 = rate limit, rotar clave
+  if (resp.status === 429 || resp.status === 403) {
+    log('API-FOOTBALL', `Clave ${KEYS.apifIdx + 1} agotada — rotando...`);
+    rotarApifKey();
+    resp = await fetch(url.toString(), {
+      headers: {
+        'x-apisports-key': getApifKey(),
+        'x-rapidapi-key': getApifKey(),
+        'x-rapidapi-host': 'v3.football.api-sports.io'
       }
-      if(m.key==='totals') m.outcomes.forEach(o=>{
-        if(o.name==='Over'&&o.point===2.5)  over25=o.price;
-        if(o.name==='Under'&&o.point===3.5) under35=o.price;
-      });
+    });
+  }
+
+  if (!resp.ok) {
+    const txt = await resp.text().catch(() => resp.status);
+    throw new Error(`API-Football ${resp.status}: ${txt}`);
+  }
+
+  const data = await resp.json();
+
+  // Mostrar requests restantes
+  const remaining = resp.headers.get('x-ratelimit-requests-remaining');
+  if (remaining !== null) {
+    document.getElementById('mCred').textContent = remaining;
+    document.getElementById('mCredKey').textContent = `key ${(KEYS.apifIdx % 3) + 1}/3`;
+  }
+
+  if (data.errors && Object.keys(data.errors).length > 0) {
+    const errMsg = JSON.stringify(data.errors);
+    throw new Error('API-Football error: ' + errMsg);
+  }
+
+  return data.response || [];
+}
+
+// ═══════════════════════════════════════════════════════════
+// TRAER PARTIDOS DEL DÍA
+// ═══════════════════════════════════════════════════════════
+async function traerPartidosLiga(liga) {
+  const hoy = new Date();
+  const fecha = `${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}-${String(hoy.getDate()).padStart(2,'0')}`;
+
+  try {
+    const fixtures = await apifetch('/fixtures', {
+      league: liga.id,
+      season: liga.season,
+      date: fecha
+    });
+    log(liga.nombre, `${fixtures.length} partidos hoy`);
+    return fixtures;
+  } catch(e) {
+    log('ERR ' + liga.nombre, e.message);
+    return [];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// TRAER CUOTAS DE UN FIXTURE
+// Bookmaker 6 = Bet365 (más completo en API-Football)
+// ═══════════════════════════════════════════════════════════
+async function traerCuotasFixture(fixtureId) {
+  try {
+    const odds = await apifetch('/odds', {
+      fixture: fixtureId,
+      bookmaker: 6  // Bet365
+    });
+    return odds[0] || null;
+  } catch(e) {
+    // Intentar con bookmaker 1 (10Bet) como fallback
+    try {
+      const odds2 = await apifetch('/odds', { fixture: fixtureId, bookmaker: 1 });
+      return odds2[0] || null;
+    } catch(e2) {
+      return null;
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// TRAER LIVESCORES
+// ═══════════════════════════════════════════════════════════
+async function traerLivescores() {
+  try {
+    const live = await apifetch('/fixtures', { live: 'all' });
+    return live;
+  } catch(e) {
+    log('LIVE ERR', e.message);
+    return [];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// CALCULAR PICK desde cuotas de API-Football
+// ═══════════════════════════════════════════════════════════
+function calcPickDesdeOdds(oddsData, fixture, liga) {
+  if (!oddsData || !oddsData.bookmakers?.length) return null;
+
+  let fav = '', cuota = 99, over25 = 0, under35 = 0;
+  const cuotaMin = liga.cuotaMin || 1.40;
+
+  oddsData.bookmakers.forEach(bm => {
+    (bm.bets || []).forEach(bet => {
+      // Match Winner (1X2)
+      if (bet.name === 'Match Winner') {
+        bet.values.forEach(v => {
+          const price = parseFloat(v.odd);
+          if (price < cuota) { cuota = price; fav = v.value; }
+        });
+      }
+      // Goals Over/Under
+      if (bet.name === 'Goals Over/Under') {
+        bet.values.forEach(v => {
+          const price = parseFloat(v.odd);
+          if (v.value === 'Over 2.5')  over25  = price;
+          if (v.value === 'Under 3.5') under35 = price;
+        });
+      }
     });
   });
 
-  if(cuota<cuotaMinLiga||cuota>CFG.cuotaMax||!fav) return null;
+  if (cuota < cuotaMin || cuota > CFG.cuotaMax || !fav) return null;
 
-  // Fiabilidad base 60 + bonos (igual V7)
-  let fiab=60;
-  if(cuota<=1.90) fiab+=7; else if(cuota<=2.50) fiab+=4; else if(cuota<=3.00) fiab+=2;
-  if(over25>=1.4&&over25<=2.5) fiab+=5;
-  if(under35>=1.2&&under35<=2.2) fiab+=3;
-  if(liga.tipo==='GOLES'&&over25>0) fiab+=2;
-  fiab=Math.min(fiab,85);
-  if(fiab<CFG.fiabMin) return null;
+  // Fiabilidad base
+  let fiab = 60;
+  if (cuota <= 1.90) fiab += 7; else if (cuota <= 2.50) fiab += 4; else if (cuota <= 3.00) fiab += 2;
+  if (over25 >= 1.4 && over25 <= 2.5) fiab += 5;
+  if (under35 >= 1.2 && under35 <= 2.2) fiab += 3;
+  if (liga.tipo === 'GOLES' && over25 > 0) fiab += 2;
+  fiab = Math.min(fiab, 85);
+  if (fiab < CFG.fiabMin) return null;
 
-  // Mejor predicción ponderada
-  let pred=`⚽ ${fav}`;
-  let cuotaPred=cuota;
-  if(over25>=1.40&&over25<=2.80){ pred=`🔥 OVER 2.5`; cuotaPred=over25; }
-  else if(under35>=1.20&&under35<=2.20){ pred=`🛡️ UNDER 3.5`; cuotaPred=under35; }
+  // Predicción
+  let pred = `⚽ ${fav}`, cuotaPred = cuota;
+  if (over25 >= 1.40 && over25 <= 2.80)  { pred = '🔥 OVER 2.5';   cuotaPred = over25; }
+  else if (under35 >= 1.20 && under35 <= 2.20) { pred = '🛡️ UNDER 3.5'; cuotaPred = under35; }
 
-  return {fav, cuota:parseFloat(cuota.toFixed(2)), cuotaPred:parseFloat(cuotaPred.toFixed(2)),
-          fiab, pred, over25, under35,
-          razonAPI: `Cuota fav: ${cuota} | Over2.5: ${over25||'n/a'} | Under3.5: ${under35||'n/a'}`,
-          iaVeredicto:'pendiente', iaConf:null, iaAcuerda:null};
+  // Nombre legible del ganador
+  const home = fixture.teams?.home?.name || '';
+  const away = fixture.teams?.away?.name || '';
+  if (fav === 'Home') fav = home;
+  if (fav === 'Away') fav = away;
+
+  return {
+    fav, cuota: parseFloat(cuota.toFixed(2)),
+    cuotaPred: parseFloat(cuotaPred.toFixed(2)),
+    fiab, pred, over25, under35,
+    razonAPI: `Cuota fav: ${cuota.toFixed(2)} | Over2.5: ${over25 || 'n/a'} | Under3.5: ${under35 || 'n/a'}`,
+    iaVeredicto: 'pendiente', iaConf: null, iaAcuerda: null
+  };
 }
 
-// ═══════════════════════════════════════════════
-// EJECUTAR SISTEMA
-// ═══════════════════════════════════════════════
-async function ejecutar() {
-  document.getElementById('sDot').className='dot';
-  document.getElementById('sTxt').textContent='actualizando...';
-  log('SISTEMA','Analizando 7 ligas (incl. LigaPro 🇪🇨) — cuota 1.25-4.50 · próx 72h...');
-  picks=[];
+// ═══════════════════════════════════════════════════════════
+// TRADUCIR PREDICCIÓN
+// ═══════════════════════════════════════════════════════════
+function traducirPred(pred, home, away) {
+  if (!pred) return pred;
+  if (pred.includes('OVER 2.5'))  return '🔥 MÁS DE 2.5 GOLES (3 o más)';
+  if (pred.includes('UNDER 3.5')) return '🛡️ MENOS DE 3.5 GOLES (máx 3)';
+  if (pred.includes('UNDER 2.5')) return '🛡️ MENOS DE 2.5 GOLES (máx 2)';
+  const nombre = pred.replace('⚽ ', '').replace('🔥 ', '').trim();
+  if (nombre === home)    return `⚽ GANA ${home} (local)`;
+  if (nombre === away)    return `⚽ GANA ${away} (visitante)`;
+  if (nombre === 'Draw')  return '🤝 EMPATE';
+  return pred;
+}
 
-  for(const liga of LIGAS){
-    try{
-      let url=`https://api.the-odds-api.com/v4/sports/${liga.id}/odds?apiKey=${KEYS.odds1}&regions=eu,uk&markets=h2h,totals`;
-      let r=await fetch(url);
-      // Rotar clave si sin créditos
-      if(!r.ok){ url=url.replace(KEYS.odds1,KEYS.odds2); r=await fetch(url); }
-      if(!r.ok){ log('SKIP',liga.nombre); continue; }
-      const restan=r.headers.get('x-requests-remaining');
-      if(restan) document.getElementById('mCred').textContent=restan;
-      const ps=await r.json();
-      ps.forEach(p=>{
-        const pick=calcPick(p,liga);
-        if(!pick) return;
-        const est=estPartido(p.commence_time);
-        if(est==='finalizado') return;
-        const fd=new Date(p.commence_time);
-        const pickData={
-          id:p.id,
-          fecha:fd.toLocaleDateString('es-EC',{day:'2-digit',month:'2-digit'}),
-          hora:fd.toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit',hour12:false}),
-          fechaRaw:fd,
-          partido:`${p.home_team} vs ${p.away_team}`,
-          home:p.home_team, away:p.away_team,
-          ...pick, liga:liga.nombre, ligaId:liga.id, estado:est
-        };
-        pickData.predEsp=traducirPred(pickData.pred,p.home_team,p.away_team);
-        picks.push(pickData);
-      });
-      log(liga.nombre,`OK`);
-    }catch(e){ log('ERR',`${liga.nombre}: ${e.message}`); }
+// ═══════════════════════════════════════════════════════════
+// ESTADO PARTIDO
+// ═══════════════════════════════════════════════════════════
+function estPartido(fechaIso) {
+  const dif = (new Date(fechaIso) - new Date()) / 60000;
+  if (dif <= 0 && dif >= -120) return 'vivo';
+  if (dif > 0 && dif <= 720)   return 'hoy';
+  if (dif > 720 && dif <= 4320) return 'proximo';
+  return 'finalizado';
+}
+
+// ═══════════════════════════════════════════════════════════
+// EJECUTAR SISTEMA PRINCIPAL
+// ═══════════════════════════════════════════════════════════
+async function ejecutar() {
+  const btn = document.getElementById('btnEjecutar');
+  btn.disabled = true;
+  document.getElementById('sDot').className = 'dot';
+  document.getElementById('sTxt').textContent = 'cargando partidos...';
+  document.getElementById('errBanner').classList.remove('show');
+  log('SISTEMA', 'Iniciando — API-Football · 7 ligas · cuotas Bet365...');
+  picks = [];
+  let ligasOk = 0, ligasErr = 0;
+  let totalFixtures = 0, conCuotas = 0;
+
+  for (const liga of LIGAS) {
+    try {
+      document.getElementById('sTxt').textContent = `cargando ${liga.nombre}...`;
+      const fixtures = await traerPartidosLiga(liga);
+      totalFixtures += fixtures.length;
+
+      for (const fix of fixtures) {
+        const est = estPartido(fix.fixture.date);
+        if (est === 'finalizado') continue;
+
+        const home = fix.teams.home.name;
+        const away = fix.teams.away.name;
+        const fd   = new Date(fix.fixture.date);
+
+        // Traer cuotas para este fixture
+        const oddsData = await traerCuotasFixture(fix.fixture.id);
+        const pick = oddsData ? calcPickDesdeOdds(oddsData, fix, liga) : null;
+
+        if (pick) {
+          conCuotas++;
+          const pickData = {
+            id: String(fix.fixture.id),
+            fixtureId: fix.fixture.id,
+            fecha: fd.toLocaleDateString('es-EC', { day: '2-digit', month: '2-digit' }),
+            hora: fd.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', hour12: false }),
+            fechaRaw: fd,
+            partido: `${home} vs ${away}`,
+            home, away,
+            ...pick,
+            liga: liga.nombre,
+            ligaId: liga.id,
+            estado: est,
+            golesH: fix.goals?.home ?? null,
+            golesA: fix.goals?.away ?? null
+          };
+          pickData.predEsp = traducirPred(pickData.pred, home, away);
+          picks.push(pickData);
+        }
+      }
+      ligasOk++;
+    } catch(e) {
+      ligasErr++;
+      log('ERR ' + liga.nombre, e.message);
+    }
   }
 
-  picks.sort((a,b)=>a.fechaRaw-b.fechaRaw);
-  render(); actualizarMetricas();
-  document.getElementById('sDot').className='dot on';
-  document.getElementById('sTxt').textContent='online';
-  document.getElementById('ulAct').textContent=
-    new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit',hour12:false});
-  log('OK',`${picks.length} picks generados`);
+  picks.sort((a, b) => a.fechaRaw - b.fechaRaw);
+  render();
+  actualizarMetricas();
+
+  // Guardar en Redis + localStorage como fallback
+  try {
+    await redisSet('picks_v10', JSON.stringify({
+      picks: picks.map(p => ({ ...p, fechaRaw: p.fechaRaw.toISOString() })),
+      ts: Date.now()
+    }));
+    log('REDIS', 'Cache guardado en Upstash');
+  } catch(e) {}
+  localStorage.setItem('picks_v10_local', JSON.stringify({
+    picks: picks.map(p => ({ ...p, fechaRaw: p.fechaRaw.toISOString() })),
+    ts: Date.now()
+  }));
+
+  document.getElementById('sDot').className = picks.length > 0 ? 'dot on' : 'dot err';
+  document.getElementById('sTxt').textContent = picks.length > 0 ? 'online' : 'sin picks — intenta más tarde';
+  document.getElementById('ulAct').textContent =
+    new Date().toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', hour12: false });
+  document.getElementById('apiStatusBar').textContent =
+    `API-Football: ${ligasOk}✓ ${ligasErr}✗ | ${picks.length} picks de ${totalFixtures} partidos`;
+
+  if (picks.length === 0) {
+    mostrarError(`No se encontraron picks válidos. Ligas OK: ${ligasOk}/7. Intenta más tarde o verifica que hay partidos programados hoy.`);
+  }
+
+  log('OK', `${picks.length} picks generados | ${conCuotas} con cuotas | ${ligasErr} ligas fallaron`);
+  btn.disabled = false;
 }
 
-// ═══════════════════════════════════════════════
-// RENDER TABLA PICKS
-// ═══════════════════════════════════════════════
-function render() {
-  const body=document.getElementById('pBody');
-  const fl=document.getElementById('filtLiga').value;
-  const fe=document.getElementById('filtEst').value;
-  let list=[...picks];
-  if(fl!=='all') list=list.filter(p=>p.liga.includes(fl));
-  if(fe!=='all') list=list.filter(p=>p.estado===fe);
+// ═══════════════════════════════════════════════════════════
+// CARGAR DESDE CACHE (Redis primero, luego localStorage)
+// ═══════════════════════════════════════════════════════════
+async function cargarCache() {
+  // Intentar Redis primero
+  try {
+    const cached = await redisGet('picks_v10');
+    if (cached) {
+      const data = typeof cached === 'string' ? JSON.parse(cached) : cached;
+      const edad = (Date.now() - data.ts) / 60000;
+      if (edad <= 30) {
+        picks = data.picks.map(p => ({ ...p, fechaRaw: new Date(p.fechaRaw) }));
+        picks.forEach(p => { p.estado = estPartido(p.fechaRaw); });
+        picks = picks.filter(p => p.estado !== 'finalizado');
+        render(); actualizarMetricas(); contadores();
+        log('REDIS CACHE', `${picks.length} picks (hace ${Math.round(edad)}m)`);
+        document.getElementById('sDot').className = 'dot on';
+        document.getElementById('sTxt').textContent = `online (cache ${Math.round(edad)}m)`;
+        document.getElementById('ulAct').textContent =
+          new Date(data.ts).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', hour12: false });
+        return true;
+      }
+    }
+  } catch(e) {}
 
-  if(!list.length){
-    body.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">Sin picks con estos filtros</td></tr>`;
+  // Fallback localStorage
+  try {
+    const local = JSON.parse(localStorage.getItem('picks_v10_local') || 'null');
+    if (local) {
+      const edad = (Date.now() - local.ts) / 60000;
+      if (edad <= 30) {
+        picks = local.picks.map(p => ({ ...p, fechaRaw: new Date(p.fechaRaw) }));
+        picks.forEach(p => { p.estado = estPartido(p.fechaRaw); });
+        picks = picks.filter(p => p.estado !== 'finalizado');
+        render(); actualizarMetricas(); contadores();
+        log('LOCAL CACHE', `${picks.length} picks (hace ${Math.round(edad)}m)`);
+        document.getElementById('sDot').className = 'dot on';
+        document.getElementById('sTxt').textContent = `online (caché local ${Math.round(edad)}m)`;
+        return true;
+      }
+    }
+  } catch(e) {}
+
+  return false;
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER TABLA
+// ═══════════════════════════════════════════════════════════
+function render() {
+  const body = document.getElementById('pBody');
+  const fl = document.getElementById('filtLiga').value;
+  const fe = document.getElementById('filtEst').value;
+  let list = [...picks];
+  if (fl !== 'all') list = list.filter(p => p.liga.includes(fl));
+  if (fe !== 'all') list = list.filter(p => p.estado === fe);
+
+  if (!list.length) {
+    body.innerHTML = `<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">Sin picks con estos filtros</td></tr>`;
     return;
   }
 
-  body.innerHTML=list.map(p=>{
-    const bc=p.estado==='vivo'?'blive':p.estado==='hoy'?'bhoy':'bprox';
-    const bt=p.estado==='vivo'?'● VIVO':p.estado==='hoy'?'◐ HOY':'○ PRÓX';
-    const fw=Math.round((p.fiab-50)/35*100);
-    const fc=p.fiab>=75?'var(--green)':p.fiab>=65?'var(--yellow)':'var(--muted2)';
+  body.innerHTML = list.map(p => {
+    const bc  = p.estado === 'vivo' ? 'blive' : p.estado === 'hoy' ? 'bhoy' : 'bprox';
+    const bt  = p.estado === 'vivo' ? '● VIVO' : p.estado === 'hoy' ? '◐ HOY' : '○ PRÓX';
+    const fw  = Math.round((p.fiab - 50) / 35 * 100);
+    const fc  = p.fiab >= 75 ? 'var(--green)' : p.fiab >= 65 ? 'var(--yellow)' : 'var(--muted2)';
 
-    let iaBadge='<span style="color:var(--muted);font-size:10px;">—</span>';
-    let iaConfHtml='<span style="color:var(--muted);font-size:10px;">—</span>';
-    if(p.iaVeredicto!=='pendiente'){
-      const cls=p.iaAcuerda?'bok':p.iaVeredicto==='esperar'?'bwait':'bno';
-      const lbl=p.iaAcuerda?'✅ CONFIRMA':p.iaVeredicto==='esperar'?'⚠️ ESPERAR':'❌ DIFIERE';
-      iaBadge=`<span class="badge ${cls}">${lbl}</span>`;
-      if(p.iaConf!==null){
-        const ifw=p.iaConf;
-        const ifc=p.iaConf>=75?'var(--green)':p.iaConf>=55?'var(--yellow)':'var(--red)';
-        iaConfHtml=`<div class="fbar"><div class="fbg"><div class="ffill" style="width:${ifw}%;background:${ifc}"></div></div><span class="fnum" style="color:${ifc}">${p.iaConf}%</span></div>`;
+    let iaBadge = '<span style="color:var(--muted);font-size:10px;">—</span>';
+    let iaConfHtml = '<span style="color:var(--muted);font-size:10px;">—</span>';
+    if (p.iaVeredicto !== 'pendiente') {
+      const cls = p.iaAcuerda ? 'bok' : p.iaVeredicto === 'esperar' ? 'bwait' : 'bno';
+      const lbl = p.iaAcuerda ? '✅ CONFIRMA' : p.iaVeredicto === 'esperar' ? '⚠️ ESPERAR' : '❌ DIFIERE';
+      iaBadge = `<span class="badge ${cls}">${lbl}</span>`;
+      if (p.iaConf !== null) {
+        const ifc = p.iaConf >= 75 ? 'var(--green)' : p.iaConf >= 55 ? 'var(--yellow)' : 'var(--red)';
+        iaConfHtml = `<div class="fbar"><div class="fbg"><div class="ffill" style="width:${p.iaConf}%;background:${ifc}"></div></div><span class="fnum" style="color:${ifc}">${p.iaConf}%</span></div>`;
       }
     }
 
@@ -1012,359 +892,370 @@ function render() {
       <td style="font-family:var(--mono);font-size:10px;color:var(--muted2)">${p.fecha}<br>${p.hora}</td>
       <td style="font-weight:500;font-size:12px">
         ${p.partido}
-        ${p.golesH!==null&&p.golesH!==undefined?`<span style="font-family:var(--mono);font-size:10px;color:var(--yellow);margin-left:6px;">${p.golesH}-${p.golesA}</span>`:''}
+        ${p.golesH !== null && p.golesH !== undefined
+          ? `<span style="font-family:var(--mono);font-size:10px;color:var(--yellow);margin-left:6px;">${p.golesH}-${p.golesA}</span>`
+          : ''}
       </td>
-      <td style="font-size:12px;color:${p.tieneCuotas?'var(--blue)':'var(--muted)'};line-height:1.4;">
-        ${p.predEsp||p.pred}
-        ${!p.tieneCuotas?'<div style="font-size:9px;color:var(--muted);">sin cuotas — análisis disponible</div>':''}
-      </td>
+      <td style="font-size:12px;color:var(--blue);line-height:1.4;">${p.predEsp || p.pred}</td>
       <td><div class="fbar"><div class="fbg"><div class="ffill" style="width:${fw}%;background:${fc}"></div></div><span class="fnum" style="color:${fc}">${p.fiab}%</span></div></td>
-      <td>
-        ${iaBadge}
-        ${p.iaFavor?`<div style="font-size:9px;color:var(--green);margin-top:3px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.iaFavor.split('\n')[0]}</div>`:''}
-      </td>
+      <td>${iaBadge}${p.iaFavor ? `<div style="font-size:9px;color:var(--green);margin-top:3px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.iaFavor.split('\n')[0]}</div>` : ''}</td>
       <td>${iaConfHtml}</td>
       <td><span class="cpill">${p.cuotaPred}</span></td>
-      <td style="display:flex;gap:4px;">
-        <button class="btn-d" style="font-size:9px;padding:3px 7px;" onclick="abrirPick('${p.id}')">🔍 Analizar</button>
-      </td>
+      <td><button class="btn-d" style="font-size:9px;padding:3px 7px;" onclick="abrirPick('${p.id}')">🔍 Analizar</button></td>
     </tr>`;
   }).join('');
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // MÉTRICAS
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function actualizarMetricas() {
-  const vivo=picks.filter(p=>p.estado==='vivo').length;
-  const prox6=picks.filter(p=>{const d=(p.fechaRaw-new Date())/3600000;return d>0&&d<=6;}).length;
-  document.getElementById('mPicks').textContent=picks.length;
-  document.getElementById('mSub').textContent=`${picks.length} picks activos`;
-  document.getElementById('mVivo').textContent=vivo;
-  document.getElementById('mProx').textContent=prox6;
-  const total=iaAcuerdaCount+iaDesacuerdaCount;
-  document.getElementById('mIaAcuerda').textContent=total>0?Math.round(iaAcuerdaCount/total*100)+'%':'--%';
+  const vivo  = picks.filter(p => p.estado === 'vivo').length;
+  const prox6 = picks.filter(p => { const d = (p.fechaRaw - new Date()) / 3600000; return d > 0 && d <= 6; }).length;
+  document.getElementById('mPicks').textContent = picks.length;
+  document.getElementById('mSub').textContent   = `${picks.length} picks activos`;
+  document.getElementById('mVivo').textContent  = vivo;
+  document.getElementById('mProx').textContent  = prox6;
+  const total = iaAcuerdaCount + iaDesacuerdaCount;
+  document.getElementById('mIaAcuerda').textContent = total > 0 ? Math.round(iaAcuerdaCount / total * 100) + '%' : '--%';
 }
 
-// ═══════════════════════════════════════════════
-// ABRIR PICK — ANÁLISIS COMPLETO
-// ═══════════════════════════════════════════════
+function contadores() {
+  actualizarMetricas();
+}
+
+function mostrarError(msg) {
+  const b = document.getElementById('errBanner');
+  b.textContent = '⚠️ ' + msg;
+  b.classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════════════
+// ANÁLISIS IA (Groq)
+// ═══════════════════════════════════════════════════════════
 async function abrirPick(id) {
-  activePick=picks.find(p=>p.id===id); if(!activePick) return;
-  pickChatHist=[];
-  document.getElementById('mPartido').textContent=activePick.partido;
-  document.getElementById('mInfo').textContent=
+  activePick = picks.find(p => p.id === id);
+  if (!activePick) return;
+  pickChatHist = [];
+  document.getElementById('mPartido').textContent = activePick.partido;
+  document.getElementById('mInfo').textContent    =
     `${activePick.liga} · ${activePick.fecha} ${activePick.hora} · Cuota: ${activePick.cuotaPred}`;
-  document.getElementById('mApiPred').textContent=activePick.predEsp||activePick.pred;
-  document.getElementById('apiRazon').textContent=activePick.razonAPI;
-  document.getElementById('pickChat').innerHTML='';
-  document.getElementById('iaFullText').textContent='Analizando con GPT-4o mini...';
-  document.getElementById('mIaPred').textContent='analizando...';
-  document.getElementById('iaDecision').textContent='esperando...';
-  document.getElementById('veredictBox').style.display='none';
+  document.getElementById('mApiPred').textContent = activePick.predEsp || activePick.pred;
+  document.getElementById('apiRazon').textContent = activePick.razonAPI;
+  document.getElementById('pickChat').innerHTML   = '';
+  document.getElementById('iaFullText').textContent = '🤖 Analizando con Groq Llama-3.3...';
+  document.getElementById('mIaPred').textContent  = 'analizando...';
+  document.getElementById('iaDecision').textContent = 'esperando...';
+  document.getElementById('veredictBox').style.display = 'none';
 
-  // Anillo API
   animarAnillo('apiCircle', activePick.fiab, '#40c4ff');
-  document.getElementById('apiConfNum').textContent=activePick.fiab+'%';
-
+  document.getElementById('apiConfNum').textContent = activePick.fiab + '%';
   document.getElementById('modalPick').classList.add('open');
-  await analizarConGPT();
+  await analizarConGroq();
 }
 
 function cerrarModal() {
   document.getElementById('modalPick').classList.remove('open');
-  activePick=null; pickChatHist=[];
+  activePick = null; pickChatHist = [];
 }
 
 function animarAnillo(id, pct, color) {
-  const circle=document.getElementById(id);
-  const offset=163.4-(163.4*(pct/100));
-  circle.style.strokeDashoffset=offset;
-  circle.style.stroke=color;
+  const circle = document.getElementById(id);
+  circle.style.strokeDashoffset = 163.4 - (163.4 * (pct / 100));
+  circle.style.stroke = color;
 }
 
-// ═══════════════════════════════════════════════
-// GPT ANÁLISIS DEL PICK
-// La IA valida si la sugerencia de la API es real
-// ═══════════════════════════════════════════════
-async function analizarConGPT() {
-  const p=activePick; if(!p) return;
-  const hoy=new Date().toLocaleDateString('es-EC',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+async function analizarConGroq() {
+  const p = activePick; if (!p) return;
+  const hoy = new Date().toLocaleDateString('es-EC', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  // Mostrar que está buscando
-  document.getElementById('iaFullText').textContent='🌐 Buscando datos reales en internet...';
-  document.getElementById('mIaPred').textContent='buscando...';
+  const system = `Eres un analista deportivo experto en apuestas de fútbol. Hoy es ${hoy}.
+Analiza el pick y responde EXACTAMENTE en este formato:
 
-  // Buscar contexto real con Tavily
-  const contextoWeb = await buscarContextoPartido(p.home, p.away, p.liga);
-
-  document.getElementById('iaFullText').textContent='🤖 Analizando con IA...';
-
-  const system=`Eres un analista deportivo experto en apuestas de fútbol. Hoy es ${hoy}.
-Se te dan DATOS REALES buscados en internet. Úsalos como base principal del análisis.
-
-RESPONDE EXACTAMENTE EN ESTE FORMATO (no cambies los títulos ni el orden):
-
-PREDICCIÓN IA: [tu predicción en español claro]
-CONFIANZA: [número 0-100, ajusta según datos reales]
+PREDICCIÓN IA: [tu predicción]
+CONFIANZA: [0-100]
 VEREDICTO: [CONFIRMA / DIFIERE / ESPERAR]
 
 ✅ A FAVOR
-→ [argumento 1 con dato concreto]
-→ [argumento 2 con dato concreto]
-→ [argumento 3 si existe]
+→ [argumento 1]
+→ [argumento 2]
 
 ❌ EN CONTRA
-→ [riesgo 1 con dato concreto]
-→ [riesgo 2 con dato concreto]
-→ [riesgo 3 si existe]
+→ [riesgo 1]
+→ [riesgo 2]
 
-💡 MERCADOS ALTERNATIVOS
-→ [opción 1 más segura y por qué]
-→ [opción 2 si existe]
+💡 ALTERNATIVAS
+→ [opción más segura]
 
 🎯 CONCLUSIÓN
-[2-3 líneas directas: apostar o no, y por qué]
+[2-3 líneas directas]`;
 
-REGLAS:
-- Si los datos reales contradicen la cuota, baja la confianza significativamente
-- Si el historial directo muestra patrón claro, menciónalo con números
-- Si hay lesión de jugador clave, es argumento en contra importante
-- Sé directo y específico, no genérico
-
-RESPONDE EXACTAMENTE EN ESTE FORMATO (no cambies los títulos):
-
-PREDICCIÓN IA: [escribe aquí TU predicción, puede ser igual o diferente a la API]
-CONFIANZA: [número del 0 al 100]
-VEREDICTO: [CONFIRMA / DIFIERE / ESPERAR]
-
-📋 DATOS ENCONTRADOS
-→ Alineaciones: [dato]
-→ Lesiones: [dato]
-→ Motivación: [dato]
-→ Forma: [dato]
-
-⚠️ RIESGOS
-→ [factores que pueden fallar]
-
-🎯 CONCLUSIÓN
-[2-3 líneas directas explicando si apostar o no y por qué]`;
-
-  const user=`La API de cuotas sugiere esta apuesta:
-Partido: ${p.partido}
-Liga: ${p.liga}
-Fecha/hora: ${p.fecha} ${p.hora}
-Predicción API: ${p.predEsp||p.pred}
-Cuota: ${p.cuotaPred}
-Datos API: ${p.razonAPI}
-
-${contextoWeb}
-
-Con estos datos reales, ¿confirmas esta predicción o tienes una diferente? ¿Cuánto confías (0-100)?`;
+  const user = `Partido: ${p.partido} | Liga: ${p.liga}
+Fecha: ${p.fecha} ${p.hora} | Cuota: ${p.cuotaPred}
+Predicción API-Football: ${p.predEsp || p.pred}
+Datos cuotas: ${p.razonAPI}
+¿Confirmas esta predicción? ¿Cuánto confías (0-100)?`;
 
   try {
-    const resp=await callGPT(system,[{role:'user',content:user}]);
-
-    // Parsear respuesta estructurada
+    const resp = await callGroq(system, [{ role: 'user', content: user }]);
     const predMatch  = resp.match(/PREDICCIÓN IA:\s*(.+)/);
     const confMatch  = resp.match(/CONFIANZA:\s*(\d+)/);
     const verdMatch  = resp.match(/VEREDICTO:\s*(CONFIRMA|DIFIERE|ESPERAR)/i);
-
-    // Extraer secciones
-    const favorMatch = resp.match(/✅ A FAVOR([\s\S]*?)(?=❌ EN CONTRA|💡|🎯|$)/);
+    const favorMatch = resp.match(/✅ A FAVOR([\s\S]*?)(?=❌|💡|🎯|$)/);
     const contraMatch= resp.match(/❌ EN CONTRA([\s\S]*?)(?=💡|🎯|$)/);
-    const altMatch   = resp.match(/💡 MERCADOS ALTERNATIVOS([\s\S]*?)(?=🎯|$)/);
+    const altMatch   = resp.match(/💡 ALTERNATIVAS([\s\S]*?)(?=🎯|$)/);
     const concMatch  = resp.match(/🎯 CONCLUSIÓN([\s\S]*?)$/);
 
-    const iaPred   = predMatch  ? predMatch[1].trim()  : (p.predEsp||p.pred);
-    const iaConf   = confMatch  ? parseInt(confMatch[1]): 50;
-    const veredicto= verdMatch  ? verdMatch[1].toLowerCase() : 'esperar';
-    const acuerda  = veredicto === 'confirma';
+    const iaPred    = predMatch  ? predMatch[1].trim()  : (p.predEsp || p.pred);
+    const iaConf    = confMatch  ? parseInt(confMatch[1]) : 50;
+    const veredicto = verdMatch  ? verdMatch[1].toLowerCase() : 'esperar';
+    const acuerda   = veredicto === 'confirma';
 
-    const secFavor = favorMatch ? favorMatch[1].trim() : '';
-    const secContra= contraMatch? contraMatch[1].trim(): '';
-    const secAlt   = altMatch   ? altMatch[1].trim()   : '';
-    const secConc  = concMatch  ? concMatch[1].trim()  : '';
+    p.iaVeredicto = veredicto; p.iaConf = iaConf; p.iaAcuerda = acuerda; p.iaPred = iaPred;
+    p.iaFavor  = favorMatch  ? favorMatch[1].trim()  : '';
+    p.iaContra = contraMatch ? contraMatch[1].trim() : '';
+    p.iaAlt    = altMatch    ? altMatch[1].trim()    : '';
+    p.iaConc   = concMatch   ? concMatch[1].trim()   : '';
+    if (acuerda) iaAcuerdaCount++; else iaDesacuerdaCount++;
 
-    // Guardar en pick para usar en tabla y simulador
-    p.iaVeredicto=veredicto; p.iaConf=iaConf; p.iaAcuerda=acuerda; p.iaPred=iaPred;
-    p.iaFavor=secFavor; p.iaContra=secContra; p.iaAlt=secAlt; p.iaConc=secConc;
-    if(acuerda) iaAcuerdaCount++; else iaDesacuerdaCount++;
+    document.getElementById('mIaPred').textContent = iaPred;
+    animarAnillo('iaCircle', iaConf, iaConf >= 70 ? '#00e676' : iaConf >= 50 ? '#ffd740' : '#ff5252');
+    document.getElementById('iaConfNum').textContent = iaConf + '%';
 
-    // Anillo IA
-    document.getElementById('mIaPred').textContent=iaPred;
-    animarAnillo('iaCircle',iaConf,iaConf>=70?'#00e676':iaConf>=50?'#ffd740':'#ff5252');
-    document.getElementById('iaConfNum').textContent=iaConf+'%';
+    const decCls = acuerda ? 'bok' : veredicto === 'esperar' ? 'bwait' : 'bno';
+    const decTxt = acuerda ? '✅ CONFIRMA LA API' : veredicto === 'esperar' ? '⚠️ ESPERAR MÁS INFO' : '❌ DIFIERE';
+    document.getElementById('iaDecision').innerHTML = `<span class="badge ${decCls}" style="font-size:9px;">${decTxt}</span>`;
 
-    const decCls=acuerda?'bok':veredicto==='esperar'?'bwait':'bno';
-    const decTxt=acuerda?'✅ CONFIRMA LA API':veredicto==='esperar'?'⚠️ ESPERAR MÁS INFO':'❌ DIFIERE';
-    document.getElementById('iaDecision').innerHTML=`<span class="badge ${decCls}" style="font-size:9px;">${decTxt}</span>`;
-
-    // Veredicto box
-    const vb=document.getElementById('veredictBox');
-    vb.style.display='block';
-    if(acuerda&&iaConf>=70){
-      vb.style.cssText='display:block;padding:10px 14px;border-radius:7px;background:var(--gdim);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:12px;';
-      vb.textContent=`✅ AMBAS COINCIDEN — CONFIANZA ALTA (${iaConf}%) → APOSTAR`;
-    } else if(!acuerda){
-      vb.style.cssText='display:block;padding:10px 14px;border-radius:7px;background:var(--rdim);border:1px solid var(--red);color:var(--red);font-family:var(--mono);font-size:12px;';
-      vb.textContent=`❌ LA IA DIFIERE DE LA API (${iaConf}%) → PRECAUCIÓN`;
+    const vb = document.getElementById('veredictBox');
+    vb.style.display = 'block';
+    if (acuerda && iaConf >= 70) {
+      vb.style.cssText = 'display:block;padding:10px 14px;border-radius:7px;background:var(--gdim);border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:12px;margin-bottom:10px;';
+      vb.textContent = `✅ AMBAS COINCIDEN — CONFIANZA ALTA (${iaConf}%) → APOSTAR`;
+    } else if (!acuerda) {
+      vb.style.cssText = 'display:block;padding:10px 14px;border-radius:7px;background:var(--rdim);border:1px solid var(--red);color:var(--red);font-family:var(--mono);font-size:12px;margin-bottom:10px;';
+      vb.textContent = `❌ LA IA DIFIERE DE LA API (${iaConf}%) → PRECAUCIÓN`;
     } else {
-      vb.style.cssText='display:block;padding:10px 14px;border-radius:7px;background:var(--ydim);border:1px solid var(--yellow);color:var(--yellow);font-family:var(--mono);font-size:12px;';
-      vb.textContent=`⚠️ CONFIANZA MODERADA (${iaConf}%) → ESPERAR MÁS INFORMACIÓN`;
+      vb.style.cssText = 'display:block;padding:10px 14px;border-radius:7px;background:var(--ydim);border:1px solid var(--yellow);color:var(--yellow);font-family:var(--mono);font-size:12px;margin-bottom:10px;';
+      vb.textContent = `⚠️ CONFIANZA MODERADA (${iaConf}%) → ESPERAR MÁS INFO`;
     }
 
-    // Renderizar secciones visuales
-    let htmlAnalisis = '';
-
-    if(secFavor){
-      htmlAnalisis += `<div style="background:#00e67610;border:1px solid var(--green);border-radius:6px;padding:10px;margin-bottom:8px;">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:5px;">✅ ARGUMENTOS A FAVOR</div>
-        <div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${secFavor}</div>
-      </div>`;
-    }
-    if(secContra){
-      htmlAnalisis += `<div style="background:#ff525210;border:1px solid var(--red);border-radius:6px;padding:10px;margin-bottom:8px;">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--red);margin-bottom:5px;">❌ ARGUMENTOS EN CONTRA</div>
-        <div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${secContra}</div>
-      </div>`;
-    }
-    if(secAlt){
-      htmlAnalisis += `<div style="background:#40c4ff10;border:1px solid var(--blue);border-radius:6px;padding:10px;margin-bottom:8px;">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--blue);margin-bottom:5px;">💡 MERCADOS ALTERNATIVOS</div>
-        <div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${secAlt}</div>
-      </div>`;
-    }
-    if(secConc){
-      htmlAnalisis += `<div style="background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:10px;">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--muted2);margin-bottom:5px;">🎯 CONCLUSIÓN</div>
-        <div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${secConc}</div>
-      </div>`;
-    }
-
-    const fullBox = document.getElementById('iaFullText');
-    fullBox.innerHTML = htmlAnalisis || resp.replace(/\n/g,'<br>');
-
-    document.getElementById('mConfianzaLabel').textContent=`API: ${p.fiab}% · IA: ${iaConf}%`;
-
-    // Mensaje resumen en chat
-    const resumen = `Análisis listo (${iaConf}% confianza):\n${decTxt}\n${secConc?'\n'+secConc.slice(0,150):''}\n\nPregúntame lo que quieras sobre este partido.`;
-    addMsgBox('pickChat','bot', resumen);
-    actualizarMetricas(); render(); guardarPicksCache();
-    log('IA ANÁLISIS',`${p.partido} — IA:${iaConf}% ${veredicto.toUpperCase()}`);
+    let html = '';
+    if (p.iaFavor)  html += `<div style="background:#00e67610;border:1px solid var(--green);border-radius:6px;padding:10px;margin-bottom:8px;"><div style="font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:5px;">✅ A FAVOR</div><div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${p.iaFavor}</div></div>`;
+    if (p.iaContra) html += `<div style="background:#ff525210;border:1px solid var(--red);border-radius:6px;padding:10px;margin-bottom:8px;"><div style="font-family:var(--mono);font-size:10px;color:var(--red);margin-bottom:5px;">❌ EN CONTRA</div><div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${p.iaContra}</div></div>`;
+    if (p.iaAlt)    html += `<div style="background:#40c4ff10;border:1px solid var(--blue);border-radius:6px;padding:10px;margin-bottom:8px;"><div style="font-family:var(--mono);font-size:10px;color:var(--blue);margin-bottom:5px;">💡 ALTERNATIVAS</div><div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${p.iaAlt}</div></div>`;
+    if (p.iaConc)   html += `<div style="background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:10px;"><div style="font-family:var(--mono);font-size:10px;color:var(--muted2);margin-bottom:5px;">🎯 CONCLUSIÓN</div><div style="font-size:12px;line-height:1.7;white-space:pre-wrap;">${p.iaConc}</div></div>`;
+    document.getElementById('iaFullText').innerHTML = html || resp.replace(/\n/g, '<br>');
+    document.getElementById('mConfianzaLabel').textContent = `API: ${p.fiab}% · IA: ${iaConf}%`;
+    addMsgBox('pickChat', 'bot', `Análisis listo (${iaConf}% confianza):\n${decTxt}\n${p.iaConc ? '\n' + p.iaConc.slice(0, 150) : ''}\n\nPregúntame lo que quieras.`);
+    actualizarMetricas(); render();
+    log('IA', `${p.partido} — ${iaConf}% ${veredicto.toUpperCase()}`);
   } catch(e) {
-    document.getElementById('iaFullText').textContent='⚠️ Error GPT: '+e.message;
-    log('ERR GPT',e.message);
+    document.getElementById('iaFullText').textContent = '⚠️ Error Groq: ' + e.message;
+    log('ERR GROQ', e.message);
   }
 }
 
-// ═══════════════════════════════════════════════
-// CHAT DENTRO DEL PICK
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// GROQ API CALL
+// ═══════════════════════════════════════════════════════════
+async function callGroq(system, messages) {
+  const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + KEYS.groq
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      temperature: 0.25,
+      max_tokens: 900,
+      messages: [{ role: 'system', content: system }, ...messages]
+    })
+  });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({ error: { message: r.status } }));
+    throw new Error('Groq: ' + (err.error?.message || r.status));
+  }
+  const d = await r.json();
+  return d.choices[0].message.content;
+}
+
+// ═══════════════════════════════════════════════════════════
+// CHAT PICK
+// ═══════════════════════════════════════════════════════════
 async function enviarPickChat() {
-  const inp=document.getElementById('pickChatIn');
-  const txt=inp.value.trim(); if(!txt||!activePick) return;
-  inp.value='';
-  addMsgBox('pickChat','user',txt);
-  document.getElementById('pickSend').disabled=true;
+  const inp = document.getElementById('pickChatIn');
+  const txt = inp.value.trim();
+  if (!txt || !activePick) return;
+  inp.value = '';
+  addMsgBox('pickChat', 'user', txt);
+  document.getElementById('pickSend').disabled = true;
   addTyping('pickChat');
 
-  const p=activePick;
-  const hoy=new Date().toLocaleDateString('es-EC',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const p = activePick;
+  const sys = `Eres analista de apuestas. Partido: ${p.partido} | Liga: ${p.liga} | Predicción: ${p.predEsp||p.pred} | Cuota: ${p.cuotaPred} | Confianza IA: ${p.iaConf||'?'}%. Responde en español, sé directo. Si preguntan si seguir/retirarse termina con MANTENER ✅ o CANCELAR ❌.`;
 
-  // Detectar si pregunta sobre partido en vivo o estadísticas
-  const esLive = /marcador|vivo|minuto|min |gol|result|cómo va|como va|sigo|retir|cashout|remontad|estadist/i.test(txt);
-
-  let contextoExtra = '';
-  if (esLive) {
-    addMsgBox('pickChat','bot','🌐 Buscando datos en tiempo real...');
+  pickChatHist.push({ role: 'user', content: txt });
+  try {
+    const r = await callGroq(sys, pickChatHist);
     removeTyping('pickChat');
-    addTyping('pickChat');
-
-    // Buscar marcador + estadísticas en tiempo real con Tavily
-    const [marcador, stats, noticias] = await Promise.all([
-      buscarWeb(`${p.home} vs ${p.away} marcador resultado en vivo ahora ${hoy}`, 3),
-      buscarWeb(`${p.home} ${p.away} estadísticas partido hoy posesión tiros`, 2),
-      buscarWeb(`${p.home} ${p.away} partido hoy análisis táctica`, 2)
-    ]);
-
-    contextoExtra = `
-=== DATOS EN TIEMPO REAL (buscados ahora) ===
-`;
-    if (marcador) contextoExtra += `📊 MARCADOR/RESULTADO: ${marcador}
-`;
-    if (stats)    contextoExtra += `📈 ESTADÍSTICAS: ${stats}
-`;
-    if (noticias) contextoExtra += `📰 CONTEXTO: ${noticias}
-`;
-    contextoExtra += `==========================================
-`;
+    addMsgBox('pickChat', 'bot', r);
+    pickChatHist.push({ role: 'assistant', content: r });
+    if (pickChatHist.length > 14) pickChatHist = pickChatHist.slice(-14);
+  } catch(e) {
+    removeTyping('pickChat');
+    addMsgBox('pickChat', 'bot', '⚠️ ' + e.message);
   }
-
-  const sys=`Eres un analista de apuestas de fútbol experto. Hoy es ${hoy}.
-Tienes acceso a datos reales buscados en internet ahora mismo.
-
-Contexto del pick:
-Partido: ${p.partido} | Liga: ${p.liga} | Hora: ${p.hora}
-Predicción API: ${p.predEsp||p.pred} (confianza API: ${p.fiab}%)
-Predicción IA: ${p.iaPred||p.predEsp||p.pred} (confianza IA: ${p.iaConf||'?'}%)
-Veredicto previo: ${p.iaVeredicto}
-
-${contextoExtra}
-
-INSTRUCCIONES:
-- Usa los datos reales encontrados como base principal
-- Si hay marcador en vivo, analiza si la predicción sigue viable
-- Evalúa probabilidad de remontada con datos concretos
-- Si preguntan estadísticas, usa los datos encontrados
-- Sé MUY directo. Si es pregunta de seguir/retirarse termina con MANTENER ✅ o CANCELAR ❌
-- Si los datos muestran que la predicción está perdida, di CANCELAR con razón clara
-- Responde en español`;
-
-  const mensajeConContexto = contextoExtra ? 
-    `${txt}
-
-[Datos buscados en tiempo real adjuntos arriba]` : txt;
-
-  pickChatHist.push({role:'user', content: mensajeConContexto});
-
-  try{
-    const r=await callGPT(sys, pickChatHist);
-    removeTyping('pickChat');
-    addMsgBox('pickChat','bot',r);
-    pickChatHist.push({role:'assistant',content:r});
-    if(pickChatHist.length>14) pickChatHist=pickChatHist.slice(-14);
-  }catch(e){
-    removeTyping('pickChat');
-    addMsgBox('pickChat','bot','⚠️ Error: '+e.message);
-  }
-  document.getElementById('pickSend').disabled=false;
+  document.getElementById('pickSend').disabled = false;
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// MID-PARTIDO
+// ═══════════════════════════════════════════════════════════
+async function chequearMid() {
+  const ahora = new Date();
+  const enRango = picks.filter(p => {
+    const dif = (ahora - p.fechaRaw) / 60000;
+    return dif >= 35 && dif <= 65;
+  });
+
+  document.getElementById('midTotal').textContent = enRango.length;
+  if (!enRango.length) {
+    log('MID', 'Sin partidos entre min 35-65');
+    document.getElementById('midPanel').innerHTML = `
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:24px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:10px;">
+        Sin partidos en el rango min 35-65 ahora mismo.<br>Vuelve a revisar cuando haya partidos en juego.
+      </div>`;
+    return;
+  }
+
+  const panelDiv = document.getElementById('midPanel');
+  panelDiv.innerHTML = '';
+
+  for (const p of enRango) {
+    const min = Math.round((ahora - p.fechaRaw) / 60000);
+    const div = document.createElement('div');
+    div.className = 'mid-panel';
+    div.innerHTML = `
+      <div class="mid-title"><span style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1s infinite;"></span> MONITOREO EN VIVO · MIN ${min}</div>
+      <div style="font-size:15px;font-weight:500;margin-bottom:4px;">${p.partido}</div>
+      <div style="font-size:12px;color:var(--muted2);margin-bottom:10px;">Mi apuesta: ${p.predEsp||p.pred} · Cuota: ${p.cuotaPred}</div>
+      <div class="mid-chat chat-box" id="mc-${p.id}"></div>
+      <div class="cin-row">
+        <input class="cin" id="mi-${p.id}" placeholder="Dime el marcador actual..." onkeydown="if(event.key==='Enter')enviarMid('${p.id}')"/>
+        <button class="csnd" onclick="enviarMid('${p.id}')">▶</button>
+      </div>
+      <div id="dec-${p.id}" style="margin-top:8px;"></div>`;
+    panelDiv.appendChild(div);
+
+    // Traer livescore de API-Football
+    try {
+      const live = await traerLivescores();
+      const match = live.find(f =>
+        f.fixture.id === p.fixtureId ||
+        (f.teams.home.name.includes(p.home.split(' ')[0]) && f.teams.away.name.includes(p.away.split(' ')[0]))
+      );
+      if (match) {
+        const gh = match.goals.home, ga = match.goals.away;
+        const elapsed = match.fixture.status.elapsed || '?';
+        const marcador = `${p.home} ${gh} - ${ga} ${p.away} (min ${elapsed})`;
+        addMsgBox('mc-' + p.id, 'bot', `📡 API-Football: ${marcador}`);
+        await analizarMidAuto(p, min, gh, ga, elapsed);
+      } else {
+        addMsgBox('mc-' + p.id, 'bot', '📡 Partido no encontrado en livescore API. Escribe el marcador manualmente.');
+      }
+    } catch(e) {
+      addMsgBox('mc-' + p.id, 'bot', '⚠️ Error livescore: ' + e.message + '\nEscribe el marcador manualmente.');
+    }
+  }
+  document.getElementById('midAlertas').textContent = midAlertas.length;
+}
+
+async function analizarMidAuto(p, min, gh, ga, elapsed) {
+  const chatId = 'mc-' + p.id;
+  const marcador = `${p.home} ${gh} - ${ga} ${p.away} (min ${elapsed})`;
+
+  const sys = `Eres analista de apuestas en vivo. Muy directo.
+Partido: ${p.partido} | Predicción: ${p.predEsp||p.pred} | Cuota: ${p.cuotaPred}
+Responde SOLO: MANTENER ✅ / CANCELAR ❌ / ESPERAR ⚠️ + máximo 3 líneas. En español.`;
+
+  try {
+    const r = await callGroq(sys, [{ role: 'user', content: `Marcador actual: ${marcador}\nMinuto: ~${min}\n¿Mantener o cancelar mi apuesta?` }]);
+    addMsgBox(chatId, 'bot', r);
+    const tipo = r.includes('CANCELAR') ? 'retira' : r.includes('ESPERAR') ? 'espera' : 'sigue';
+    document.getElementById('dec-' + p.id).innerHTML = `<div class="decision-box ${tipo}">
+      ${tipo === 'sigue' ? '✅ MANTENER LA APUESTA' : tipo === 'retira' ? '❌ RETÍRATE AHORA' : '⚠️ ESPERA Y MONITOREA'}
+    </div>`;
+    midAlertas.push({ partido: p.partido, pred: p.pred, min, tipo, hora: new Date().toLocaleTimeString('es-EC', { hour12: false }) });
+    document.getElementById('midAlertas').textContent = midAlertas.length;
+    log('MID ' + tipo.toUpperCase(), `${p.partido} min ${min}`);
+  } catch(e) { addMsgBox(chatId, 'bot', '⚠️ Error IA: ' + e.message); }
+}
+
+async function enviarMid(pickId) {
+  const inp = document.getElementById('mi-' + pickId);
+  const txt = inp.value.trim(); if (!txt) return;
+  inp.value = '';
+  const p = picks.find(x => x.id === pickId); if (!p) return;
+  addMsgBox('mc-' + pickId, 'user', txt);
+
+  const sys = `Eres analista de apuestas en vivo. Partido: ${p.partido} | Predicción: ${p.predEsp||p.pred} | Cuota: ${p.cuotaPred}. Sé MUY directo. Termina siempre con MANTENER ✅ o CANCELAR ❌.`;
+  addTyping('mc-' + pickId);
+  try {
+    const r = await callGroq(sys, [{ role: 'user', content: txt }]);
+    removeTyping('mc-' + pickId);
+    addMsgBox('mc-' + pickId, 'bot', r);
+    const tipo = r.includes('CANCELAR') ? 'retira' : 'sigue';
+    document.getElementById('dec-' + pickId).innerHTML = `<div class="decision-box ${tipo}">
+      ${tipo === 'sigue' ? '✅ MANTENER LA APUESTA' : '❌ RETÍRATE AHORA'}
+    </div>`;
+  } catch(e) { removeTyping('mc-' + pickId); addMsgBox('mc-' + pickId, 'bot', '⚠️ ' + e.message); }
+}
+
+async function enviarMidChat() {
+  const inp = document.getElementById('midChatIn');
+  const txt = inp.value.trim(); if (!txt) return;
+  inp.value = '';
+  addMsgBox('midChatBox', 'user', txt);
+  midChatHist.push({ role: 'user', content: txt });
+  document.getElementById('midSend').disabled = true;
+  addTyping('midChatBox');
+
+  const sys = `Eres analista de apuestas de fútbol en vivo. El usuario te da el marcador actual. Analiza si la predicción sigue viable. Termina con MANTENER ✅ o CANCELAR ❌. En español, máximo 3 líneas.`;
+  try {
+    const r = await callGroq(sys, midChatHist);
+    removeTyping('midChatBox');
+    addMsgBox('midChatBox', 'bot', r);
+    midChatHist.push({ role: 'assistant', content: r });
+    if (midChatHist.length > 14) midChatHist = midChatHist.slice(-14);
+  } catch(e) { removeTyping('midChatBox'); addMsgBox('midChatBox', 'bot', '⚠️ ' + e.message); }
+  document.getElementById('midSend').disabled = false;
+}
+
+// ═══════════════════════════════════════════════════════════
 // SIMULADOR
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function setSimMode(radio) {
-  simMode=radio.value; simSel1=null; simSel2=null;
-  document.getElementById('simInstr').textContent=
-    simMode==='simple'?'Haz clic en un pick para seleccionarlo:':'Haz clic en 2 picks para combinarlos (cuotas se multiplican):';
+  simMode = radio.value; simSel1 = null; simSel2 = null;
+  document.getElementById('simInstr').textContent =
+    simMode === 'simple' ? 'Haz clic en un pick para seleccionarlo:' : 'Haz clic en 2 picks para combinarlos:';
   renderSimPicks(); calcSimTotal();
 }
 
 function renderSimPicks() {
-  const cont=document.getElementById('selPicks');
-  if(!picks.length){
-    cont.innerHTML=`<div style="color:var(--muted);font-size:11px;font-family:var(--mono);padding:10px;text-align:center;">Ejecuta el sistema primero (pestaña PICKS)</div>`;
+  const cont = document.getElementById('selPicks');
+  if (!picks.length) {
+    cont.innerHTML = `<div style="color:var(--muted);font-size:11px;font-family:var(--mono);padding:10px;text-align:center;">Ejecuta el sistema primero (pestaña PICKS)</div>`;
     return;
   }
-  cont.innerHTML=picks.map(p=>{
-    const sel=simSel1?.id===p.id?'selected':simSel2?.id===p.id?'selected2':'';
-    const num=simSel1?.id===p.id?'1️⃣':simSel2?.id===p.id?'2️⃣':'';
-    const conf=p.iaConf?`IA:${p.iaConf}%`:`API:${p.fiab}%`;
+  cont.innerHTML = picks.map(p => {
+    const sel = simSel1?.id === p.id ? 'selected' : simSel2?.id === p.id ? 'selected2' : '';
+    const num = simSel1?.id === p.id ? '1️⃣' : simSel2?.id === p.id ? '2️⃣' : '';
+    const conf = p.iaConf ? `IA:${p.iaConf}%` : `API:${p.fiab}%`;
     return `<div class="pick-sel-item ${sel}" onclick="selPick('${p.id}')">
-      <span style="font-family:var(--mono);font-size:10px;color:var(--muted);width:40px;">${num||p.hora}</span>
+      <span style="font-family:var(--mono);font-size:10px;color:var(--muted);width:40px;">${num || p.hora}</span>
       <span style="flex:1;font-size:12px;">${p.partido}</span>
-      <span style="font-size:11px;color:var(--blue);margin-right:8px;">${p.predEsp||p.pred}</span>
+      <span style="font-size:11px;color:var(--blue);margin-right:8px;">${p.predEsp || p.pred}</span>
       <span style="font-family:var(--mono);font-size:10px;color:var(--yellow);margin-right:6px;">${p.cuotaPred}</span>
       <span style="font-size:10px;color:var(--muted2);">${conf}</span>
     </div>`;
@@ -1372,80 +1263,85 @@ function renderSimPicks() {
 }
 
 function selPick(id) {
-  const p=picks.find(x=>x.id===id); if(!p) return;
-  if(simMode==='simple'){ simSel1=p; simSel2=null; }
+  const p = picks.find(x => x.id === id); if (!p) return;
+  if (simMode === 'simple') { simSel1 = p; simSel2 = null; }
   else {
-    if(simSel1?.id===id){ simSel1=simSel2; simSel2=null; }
-    else if(simSel2?.id===id){ simSel2=null; }
-    else if(!simSel1){ simSel1=p; }
-    else if(!simSel2){ simSel2=p; }
-    else { simSel1=simSel2; simSel2=p; }
+    if (simSel1?.id === id) { simSel1 = simSel2; simSel2 = null; }
+    else if (simSel2?.id === id) { simSel2 = null; }
+    else if (!simSel1) { simSel1 = p; }
+    else if (!simSel2) { simSel2 = p; }
+    else { simSel1 = simSel2; simSel2 = p; }
   }
   renderSimPicks(); calcSimTotal();
 }
 
 function calcSimTotal() {
-  let cuota=0;
-  if(simMode==='simple'&&simSel1) cuota=simSel1.cuotaPred;
-  else if(simMode==='combo'&&simSel1&&simSel2) cuota=parseFloat((simSel1.cuotaPred*simSel2.cuotaPred).toFixed(2));
-  const ap=parseFloat(document.getElementById('simAp').value)||2;
-  document.getElementById('simCuota').value=cuota?cuota:'—';
-  document.getElementById('simGanPot').value=cuota?'$'+((ap*cuota)-ap).toFixed(2):'—';
+  let cuota = 0;
+  if (simMode === 'simple' && simSel1) cuota = simSel1.cuotaPred;
+  else if (simMode === 'combo' && simSel1 && simSel2) cuota = parseFloat((simSel1.cuotaPred * simSel2.cuotaPred).toFixed(2));
+  const ap = parseFloat(document.getElementById('simAp').value) || 2;
+  document.getElementById('simCuota').value   = cuota ? cuota : '—';
+  document.getElementById('simGanPot').value  = cuota ? '$' + ((ap * cuota) - ap).toFixed(2) : '—';
 }
-document.getElementById('simAp').addEventListener('input',calcSimTotal);
+document.getElementById('simAp').addEventListener('input', calcSimTotal);
 
 function registrarSim(acierto) {
-  if(!simSel1) { alert('Selecciona al menos un pick'); return; }
-  if(simMode==='combo'&&!simSel2) { alert('Selecciona 2 picks para combinar'); return; }
-
-  const ap=parseFloat(document.getElementById('simAp').value)||2;
-  let cuota=simMode==='simple'?simSel1.cuotaPred:parseFloat((simSel1.cuotaPred*simSel2.cuotaPred).toFixed(2));
-  const ganancia=acierto?parseFloat(((ap*cuota)-ap).toFixed(2)):-ap;
-  const tipo=simMode==='simple'?'Simple':'Combinada 2x';
-  const partido=simMode==='simple'?simSel1.partido:`${simSel1.partido} + ${simSel2.partido}`;
-  const pred=simMode==='simple'?simSel1.pred:`${simSel1.pred} + ${simSel2.pred}`;
-  const fuenteIA=simSel1.iaVeredicto&&simSel1.iaVeredicto!=='pendiente'?'API+IA':'Solo API';
-
+  if (!simSel1) { alert('Selecciona al menos un pick'); return; }
+  if (simMode === 'combo' && !simSel2) { alert('Selecciona 2 picks para combinar'); return; }
+  const ap    = parseFloat(document.getElementById('simAp').value) || 2;
+  const cuota = simMode === 'simple' ? simSel1.cuotaPred : parseFloat((simSel1.cuotaPred * simSel2.cuotaPred).toFixed(2));
+  const ganancia = acierto ? parseFloat(((ap * cuota) - ap).toFixed(2)) : -ap;
   historial.unshift({
-    id:Date.now(), fecha:new Date().toLocaleDateString('es-EC'),
-    partido, pred, predEsp:simSel1.predEsp||pred, tipo, cuota, ap, acierto, ganancia, fuenteIA,
-    iaConf:simSel1.iaConf||null, apiConf:simSel1.fiab
+    id: Date.now(),
+    fecha:   new Date().toLocaleDateString('es-EC'),
+    partido: simMode === 'simple' ? simSel1.partido : `${simSel1.partido} + ${simSel2.partido}`,
+    pred:    simMode === 'simple' ? simSel1.pred    : `${simSel1.pred} + ${simSel2.pred}`,
+    predEsp: simSel1.predEsp || simSel1.pred,
+    tipo:    simMode === 'simple' ? 'Simple' : 'Combinada 2x',
+    cuota, ap, acierto, ganancia,
+    fuenteIA: simSel1.iaVeredicto && simSel1.iaVeredicto !== 'pendiente' ? 'API+IA' : 'Solo API',
+    iaConf: simSel1.iaConf || null, apiConf: simSel1.fiab
   });
   guardarHist();
-
-  const box=document.getElementById('simResultBox');
-  box.className='sim-result '+(acierto?'win':'lose');
-  box.innerHTML=`<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${acierto?'var(--green)':'var(--red)'}">
-    ${acierto?'✅ ACIERTO':'❌ FALLO'} — ${acierto?'+':''}$${ganancia.toFixed(2)}
-  </div>
-  <div style="font-size:11px;color:var(--muted2);margin-top:4px;">${partido} · Cuota: ${cuota} · Apostado: $${ap}</div>`;
-
+  const box = document.getElementById('simResultBox');
+  box.className = 'sim-result ' + (acierto ? 'win' : 'lose');
+  box.innerHTML = `<div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${acierto?'var(--green)':'var(--red)'}">
+    ${acierto ? '✅ ACIERTO' : '❌ FALLO'} — ${acierto ? '+' : ''}$${ganancia.toFixed(2)}
+  </div><div style="font-size:11px;color:var(--muted2);margin-top:4px;">Cuota: ${cuota} · Apostado: $${ap}</div>`;
   renderHist(); calcEfectividad();
-  log(acierto?'ACIERTO':'FALLO',`${partido} ${acierto?'+':''}$${ganancia.toFixed(2)}`);
-  simSel1=null; simSel2=null; renderSimPicks(); calcSimTotal();
+  simSel1 = null; simSel2 = null; renderSimPicks(); calcSimTotal();
 }
 
 function simularDesdeModal() {
-  if(!activePick) return;
+  if (!activePick) return;
   cerrarModal();
-  showTab('sim',document.querySelectorAll('.tab')[1]);
-  simSel1=activePick;
+  showTab('sim', document.querySelectorAll('.tab')[1]);
+  simSel1 = activePick;
   renderSimPicks(); calcSimTotal();
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // HISTORIAL
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+function cargarHist() {
+  try { historial = JSON.parse(localStorage.getItem('apuestas_hist_v10') || '[]'); } catch(e) { historial = []; }
+  renderHist(); calcEfectividad();
+}
+
+function guardarHist() {
+  localStorage.setItem('apuestas_hist_v10', JSON.stringify(historial));
+}
+
 function renderHist() {
-  const body=document.getElementById('histBody');
-  if(!historial.length){
-    body.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">Sin historial aún</td></tr>`;
+  const body = document.getElementById('histBody');
+  if (!historial.length) {
+    body.innerHTML = `<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:24px;font-family:var(--mono);font-size:10px;">Sin historial aún</td></tr>`;
     return;
   }
-  body.innerHTML=historial.map(h=>`<tr style="background:${h.acierto?'rgba(0,230,118,.04)':'rgba(255,82,82,.04)'}">
+  body.innerHTML = historial.map(h => `<tr style="background:${h.acierto?'rgba(0,230,118,.04)':'rgba(255,82,82,.04)'}">
     <td style="font-family:var(--mono);font-size:10px;color:var(--muted2)">${h.fecha}</td>
     <td style="font-size:11px;max-width:180px;">${h.partido}</td>
-    <td style="font-size:11px;color:var(--blue)">${h.predEsp||h.pred}</td>
+    <td style="font-size:11px;color:var(--blue)">${h.predEsp || h.pred}</td>
     <td><span class="badge" style="background:var(--bdim);color:var(--blue);border:1px solid var(--blue);font-size:8px;">${h.tipo}</span></td>
     <td><span class="cpill">${h.cuota}</span></td>
     <td style="font-family:var(--mono);font-size:11px;">$${h.ap}</td>
@@ -1454,251 +1350,114 @@ function renderHist() {
     <td style="font-size:10px;color:var(--muted2)">${h.fuenteIA}</td>
   </tr>`).join('');
 
-  // Resumen
-  const total=historial.length;
-  const aciertos=historial.filter(h=>h.acierto).length;
-  const ganancia=historial.reduce((s,h)=>s+h.ganancia,0);
-  const apostado=historial.reduce((s,h)=>s+h.ap,0);
-  document.getElementById('hAciertos').textContent=aciertos;
-  document.getElementById('hFallos').textContent=total-aciertos;
-  document.getElementById('hTotal').textContent='$'+apostado.toFixed(2);
-  document.getElementById('hGan').textContent=(ganancia>=0?'+':'')+'$'+ganancia.toFixed(2);
-  document.getElementById('hGan').style.color=ganancia>=0?'var(--green)':'var(--red)';
+  const total = historial.length;
+  const aciertos = historial.filter(h => h.acierto).length;
+  const ganancia = historial.reduce((s, h) => s + h.ganancia, 0);
+  const apostado = historial.reduce((s, h) => s + h.ap, 0);
+  document.getElementById('hAciertos').textContent = aciertos;
+  document.getElementById('hFallos').textContent   = total - aciertos;
+  document.getElementById('hTotal').textContent    = '$' + apostado.toFixed(2);
+  document.getElementById('hGan').textContent      = (ganancia >= 0 ? '+' : '') + '$' + ganancia.toFixed(2);
+  document.getElementById('hGan').style.color      = ganancia >= 0 ? 'var(--green)' : 'var(--red)';
 }
 
 function calcEfectividad() {
-  // Efectividad API (todos los picks en historial)
-  const total=historial.length; if(!total) return;
-  const aciertos=historial.filter(h=>h.acierto).length;
-  const pctApi=Math.round(aciertos/total*100);
-  document.getElementById('effApi').textContent=pctApi+'%';
-  document.getElementById('effApiSub').textContent=`${aciertos}/${total} picks correctos`;
-  document.getElementById('effApiBar').style.width=pctApi+'%';
-
-  // Efectividad IA (solo picks donde la IA analizó)
-  const conIA=historial.filter(h=>h.fuenteIA==='API+IA');
-  if(conIA.length){
-    const aIA=conIA.filter(h=>h.acierto).length;
-    const pctIA=Math.round(aIA/conIA.length*100);
-    document.getElementById('effIa').textContent=pctIA+'%';
-    document.getElementById('effIaSub').textContent=`${aIA}/${conIA.length} picks validados por IA`;
-    document.getElementById('effIaBar').style.width=pctIA+'%';
-    document.getElementById('effIaBar').style.background=pctIA>=pctApi?'var(--green)':'var(--red)';
+  const total = historial.length; if (!total) return;
+  const aciertos = historial.filter(h => h.acierto).length;
+  const pctApi = Math.round(aciertos / total * 100);
+  document.getElementById('effApi').textContent    = pctApi + '%';
+  document.getElementById('effApiSub').textContent = `${aciertos}/${total} picks correctos`;
+  document.getElementById('effApiBar').style.width = pctApi + '%';
+  const conIA = historial.filter(h => h.fuenteIA === 'API+IA');
+  if (conIA.length) {
+    const aIA = conIA.filter(h => h.acierto).length;
+    const pctIA = Math.round(aIA / conIA.length * 100);
+    document.getElementById('effIa').textContent    = pctIA + '%';
+    document.getElementById('effIaSub').textContent = `${aIA}/${conIA.length} validados por IA`;
+    document.getElementById('effIaBar').style.width  = pctIA + '%';
+    document.getElementById('effIaBar').style.background = pctIA >= pctApi ? 'var(--green)' : 'var(--red)';
   }
 }
 
 function limpiarHistorial() {
-  if(!confirm('¿Limpiar todo el historial?')) return;
-  historial=[]; guardarHist(); renderHist(); calcEfectividad();
-  log('HISTORIAL','Limpiado');
+  if (!confirm('¿Limpiar todo el historial?')) return;
+  historial = []; guardarHist(); renderHist(); calcEfectividad();
 }
 
-// ═══════════════════════════════════════════════
-// MID-PARTIDO
-// ═══════════════════════════════════════════════
-async function chequearMid() {
-  const ahora=new Date();
-  const enRango=picks.filter(p=>{
-    const dif=(ahora-p.fechaRaw)/60000;
-    return dif>=35&&dif<=65;
-  });
-
-  document.getElementById('midTotal').textContent=enRango.length;
-  if(!enRango.length){
-    log('MID','Sin partidos entre min 35-65');
-    document.getElementById('midPanel').innerHTML=`
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:24px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:10px;">
-        Sin partidos en el rango min 35-65 ahora mismo.<br>
-        Vuelve a revisar cuando haya partidos en juego.
-      </div>`;
-    return;
-  }
-
-  const panelDiv=document.getElementById('midPanel');
-  panelDiv.innerHTML='';
-
-  for(const p of enRango){
-    const min=Math.round((ahora-p.fechaRaw)/60000);
-    const divId='mid-'+p.id;
-    const div=document.createElement('div');
-    div.className='mid-panel'; div.id=divId;
-    div.innerHTML=`
-      <div class="mid-title"><span style="animation:pulse 1s infinite;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);"></span> MONITOREO EN VIVO · MIN ${min}</div>
-      <div class="mid-partido">${p.partido}</div>
-      <div class="mid-pred">Mi apuesta: ${p.pred} · Cuota: ${p.cuotaPred}</div>
-      <div class="mid-chat chat-box" id="mc-${p.id}"></div>
-      <div class="cin-row">
-        <input class="cin" id="mi-${p.id}" placeholder="Dime el marcador actual y te digo si seguir..." onkeydown="if(event.key==='Enter')enviarMid('${p.id}')"/>
-        <button class="csnd" onclick="enviarMid('${p.id}')">▶</button>
-      </div>
-      <div id="dec-${p.id}" style="margin-top:8px;"></div>`;
-    panelDiv.appendChild(div);
-
-    // Análisis automático
-    await analizarMidAuto(p, min, divId);
-  }
-  document.getElementById('midAlertas').textContent=midAlertas.length;
+// ═══════════════════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════════════════
+function showTab(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+  if (id === 'sim')  renderSimPicks();
+  if (id === 'hist') { renderHist(); calcEfectividad(); }
 }
 
-async function analizarMidAuto(p, min, divId) {
-  const chatId='mc-'+p.id;
-  addMsgBox(chatId,'bot',`🌐 Buscando marcador en vivo...`);
-
-  // Buscar marcador real desde Free API Live Football (gratis)
-  let marcadorVivo = '(buscando marcador...)';
-  const marcadorAPI = await traerMarcadorVivo(p.rapidId, p.home, p.away);
-  if (marcadorAPI) {
-    marcadorVivo = `${marcadorAPI.home} ${marcadorAPI.golesH} - ${marcadorAPI.golesA} ${marcadorAPI.away} (min ${marcadorAPI.minuto})`;
-    addMsgBox(chatId,'bot',`📡 Marcador en vivo: ${marcadorVivo}`);
-  } else {
-    // Fallback a Tavily si la API no tiene el marcador
-    const marcadorTavily = await buscarMarcadorVivo(p.home, p.away);
-    if (marcadorTavily) marcadorVivo = marcadorTavily;
-    addMsgBox(chatId,'bot',`🌐 Marcador buscado: ${marcadorVivo.slice(0,100)}`);
-  }
-
-  const sys=`Eres un analista de apuestas en vivo. Eres muy directo.
-Se te da el marcador real buscado en internet. Analiza si la apuesta sigue viable.
-Considera: minutos restantes, posibilidad de remontada, estilo de juego de los equipos.
-Responde SOLO con:
-MANTENER ✅ / CANCELAR ❌ / ESPERAR ⚠️
-Y máximo 3 líneas de razón. En español.`;
-
-  const usr=`Partido: ${p.partido}
-Mi predicción: ${p.predEsp||p.pred} (cuota ${p.cuotaPred})
-Minuto actual: ~${min}
-Dato de internet: ${marcadorVivo}
-¿Debo mantener o cancelar la apuesta?`;
-
-  try{
-    const r=await callGPT(sys,[{role:'user',content:usr}]);
-    addMsgBox(chatId,'bot',r);
-    const tipo=r.includes('CANCELAR')?'retira':r.includes('ESPERAR')?'espera':'sigue';
-    const dec=document.getElementById('dec-'+p.id);
-    dec.innerHTML=`<div class="decision-box ${tipo}">
-      ${tipo==='sigue'?'✅ MANTENER LA APUESTA':tipo==='retira'?'❌ RETÍRATE AHORA':'⚠️ ESPERA Y MONITOREA'}
-    </div>`;
-    midAlertas.push({partido:p.partido,pred:p.pred,min,tipo,hora:new Date().toLocaleTimeString('es-EC',{hour12:false})});
-    document.getElementById('midAlertas').textContent=midAlertas.length;
-    log('MID '+tipo.toUpperCase(),`${p.partido} min ${min}`);
-  }catch(e){ addMsgBox(chatId,'bot','⚠️ Error: '+e.message); }
-}
-
-async function enviarMid(pickId) {
-  const inp=document.getElementById('mi-'+pickId);
-  const txt=inp.value.trim(); if(!txt) return;
-  inp.value='';
-  const p=picks.find(x=>x.id===pickId); if(!p) return;
-  const chatId='mc-'+pickId;
-  addMsgBox(chatId,'user',txt);
-
-  const sys=`Eres un analista de apuestas en vivo. Contexto:
-Partido: ${p.partido} | Predicción: ${p.pred} | Cuota: ${p.cuotaPred}
-El usuario te da el marcador actual y pregunta si seguir o retirarse.
-Analiza: ¿Es realista que se cumpla la predicción? ¿Hay chances de remontada?
-Sé MUY directo. Termina siempre con MANTENER ✅ o CANCELAR ❌.`;
-
-  addTyping(chatId);
-  try{
-    const r=await callGPT(sys,[{role:'user',content:txt}]);
-    removeTyping(chatId);
-    addMsgBox(chatId,'bot',r);
-    const tipo=r.includes('CANCELAR')?'retira':'sigue';
-    const dec=document.getElementById('dec-'+pickId);
-    dec.innerHTML=`<div class="decision-box ${tipo}">
-      ${tipo==='sigue'?'✅ MANTENER LA APUESTA':'❌ RETÍRATE AHORA'}
-    </div>`;
-  }catch(e){ removeTyping(chatId); addMsgBox(chatId,'bot','⚠️ '+e.message); }
-}
-
-async function enviarMidChat() {
-  const inp=document.getElementById('midChatIn');
-  const txt=inp.value.trim(); if(!txt) return;
-  inp.value='';
-  addMsgBox('midChatBox','user',txt);
-  midChatHist.push({role:'user',content:txt});
-  document.getElementById('midSend').disabled=true;
-  addTyping('midChatBox');
-
-  const sys=`Eres un analista de apuestas de fútbol en vivo. El usuario te da el marcador actual de un partido.
-Analiza: ¿Es realista que se cumpla la predicción con ese marcador y los minutos que quedan?
-¿Hay posibilidad de remontada basándote en el estilo de los equipos?
-Siempre termina con MANTENER ✅ o CANCELAR ❌.
-Responde en español, muy directo. Máximo 3 líneas.`;
-
-  try{
-    const r=await callGPT(sys,midChatHist);
-    removeTyping('midChatBox');
-    addMsgBox('midChatBox','bot',r);
-    midChatHist.push({role:'assistant',content:r});
-    if(midChatHist.length>14) midChatHist=midChatHist.slice(-14);
-  }catch(e){ removeTyping('midChatBox'); addMsgBox('midChatBox','bot','⚠️ '+e.message); }
-  document.getElementById('midSend').disabled=false;
-}
-
-// ═══════════════════════════════════════════════
-// IA CALL — Solo Groq
-// ═══════════════════════════════════════════════
-async function callGPT(system, messages) {
-  try {
-    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEYS.openai },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile', temperature: 0.25, max_tokens: 900,
-        messages: [{ role: 'system', content: system }, ...messages]
-      })
-    });
-    if (r.ok) {
-      const d = await r.json();
-      actualizarIaStatus('🦙 Groq Llama-3.3 ✓');
-      return d.choices[0].message.content;
-    }
-    const err = await r.json();
-    throw new Error(err.error?.message || r.status);
-  } catch(e) {
-    throw new Error('Groq error: ' + e.message);
-  }
-}
-
-function actualizarIaStatus(txt) {
-  const el = document.getElementById('aiStatus');
-  if (el) el.textContent = txt;
-}
-
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // CHAT HELPERS
-// ═══════════════════════════════════════════════
-function addMsgBox(boxId,rol,txt) {
-  const c=document.getElementById(boxId); if(!c) return;
-  const d=document.createElement('div');
-  d.className='msg '+(rol==='user'?'u':'');
-  d.innerHTML=`<div class="mav">${rol==='user'?'TÚ':'IA'}</div><div class="mbub">${txt.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
-  c.appendChild(d); c.scrollTop=c.scrollHeight;
+// ═══════════════════════════════════════════════════════════
+function addMsgBox(boxId, rol, txt) {
+  const c = document.getElementById(boxId); if (!c) return;
+  const d = document.createElement('div');
+  d.className = 'msg ' + (rol === 'user' ? 'u' : '');
+  d.innerHTML = `<div class="mav">${rol === 'user' ? 'TÚ' : 'IA'}</div><div class="mbub">${txt.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
+  c.appendChild(d); c.scrollTop = c.scrollHeight;
 }
 function addTyping(boxId) {
-  const c=document.getElementById(boxId); if(!c) return;
-  const d=document.createElement('div');
-  d.className='msg'; d.id='typ-'+boxId;
-  d.innerHTML=`<div class="mav">IA</div><div class="mbub"><span class="ldots"><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></span></div>`;
-  c.appendChild(d); c.scrollTop=c.scrollHeight;
+  const c = document.getElementById(boxId); if (!c) return;
+  const d = document.createElement('div');
+  d.className = 'msg'; d.id = 'typ-' + boxId;
+  d.innerHTML = `<div class="mav">IA</div><div class="mbub"><span class="ldots"><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></span></div>`;
+  c.appendChild(d); c.scrollTop = c.scrollHeight;
 }
-function removeTyping(boxId) { const t=document.getElementById('typ-'+boxId); if(t)t.remove(); }
+function removeTyping(boxId) { const t = document.getElementById('typ-' + boxId); if (t) t.remove(); }
 
-// ═══════════════════════════════════════════════
-// INIT — carga cache si existe, ejecuta si no
-// ═══════════════════════════════════════════════
-cargarHist();
-const cacheOk = cargarPicksCache();
-if (!cacheOk) {
-  document.getElementById('sDot').className='dot';
-  document.getElementById('sTxt').textContent='cargando picks...';
-  // Auto-ejecutar al abrir si no hay cache
-  setTimeout(ejecutar, 800);
-} else {
-  document.getElementById('sDot').className='dot on';
-  document.getElementById('sTxt').textContent='online (desde cache)';
+// ═══════════════════════════════════════════════════════════
+// RELOJ + TIMER
+// ═══════════════════════════════════════════════════════════
+function tickClock() {
+  const now = new Date();
+  document.getElementById('clk').textContent = now.toLocaleTimeString('es-EC', { hour12: false });
+  const ecu = new Date(now.getTime() - 5 * 3600000);
+  const h = ecu.getUTCHours(), m = ecu.getUTCMinutes();
+  const minAct = h * 60 + m;
+  const targets = [11 * 60 + 40, 17 * 60];
+  const next = targets.find(t => t > minAct) ?? targets[0] + 1440;
+  const diff = next > minAct ? next - minAct : next + 1440 - minAct;
+  document.getElementById('nextT').textContent =
+    `próx: ${String(Math.floor(diff / 60)).padStart(2,'0')}h${String(diff % 60).padStart(2,'0')}m`;
+  if ((h === 11 && m === 40) || (h === 17 && m === 0)) ejecutar();
+  if (m === 0 || m === 30) chequearMid();
 }
+setInterval(tickClock, 60000); tickClock();
+
+// ═══════════════════════════════════════════════════════════
+// LOG
+// ═══════════════════════════════════════════════════════════
+function log(tipo, msg) {
+  const s = document.getElementById('logStrip');
+  const e = document.createElement('span'); e.className = 'lent';
+  const t = new Date().toLocaleTimeString('es-EC', { hour12: false });
+  e.innerHTML = `[${t}] <span>${tipo}</span> — ${msg}  `;
+  s.appendChild(e); s.scrollLeft = s.scrollWidth;
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+cargarHist();
+(async () => {
+  document.getElementById('sDot').className = 'dot';
+  document.getElementById('sTxt').textContent = 'verificando caché...';
+  const cacheOk = await cargarCache();
+  if (!cacheOk) {
+    document.getElementById('sTxt').textContent = 'cargando picks...';
+    await ejecutar();
+  }
+})();
 </script>
 </body>
 </html>
